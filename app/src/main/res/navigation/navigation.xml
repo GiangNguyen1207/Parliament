@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/partyListFragment">
+
+    <fragment
+        android:id="@+id/partyListFragment"
+        android:name="com.example.android.parliament.PartyListFragment"
+        android:label="fragment_party_list"
+        tools:layout="@layout/fragment_party_list">
+        <action
+            android:id="@+id/action_partyListFragment_to_memberListFragment"
+            app:destination="@id/memberListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberListFragment"
+        android:name="com.example.android.parliament.MemberListFragment"
+        android:label="fragment_member_list"
+        tools:layout="@layout/fragment_member_list">
+        <action
+            android:id="@+id/action_memberListFragment_to_memberFragment"
+            app:destination="@id/singleMemberFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_memberListFragment_to_partyListFragment"
+            app:destination="@id/partyListFragment"
+            app:popUpTo="@id/partyListFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleMemberFragment"
+        android:name="com.example.android.parliament.MemberFragment"
+        android:label="SingleMemberFragment"
+        tools:layout="@layout/fragment_member">
+        <action
+            android:id="@+id/action_memberFragment_to_memberListFragment"
+            app:destination="@id/memberListFragment"
+            app:popUpTo="@id/memberListFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+</navigation>
