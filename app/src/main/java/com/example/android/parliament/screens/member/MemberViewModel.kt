@@ -1,21 +1,21 @@
-package com.example.android.parliament.ui
+package com.example.android.parliament.screens.member
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.parliament.data.AppDatabase
-import com.example.android.parliament.data.ParliamentMemberRepository
+import com.example.android.parliament.data.AppRepository
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class AppViewModel(context: Context) : ViewModel() {
-    private val repository: ParliamentMemberRepository
+class MemberViewModel(context: Context) : ViewModel() {
+    private val repository: AppRepository
     private val response = MutableLiveData<String>()
 
     init {
-        val memberDao = AppDatabase.getDatabase(context).parliamentMemberDao()
-        repository = ParliamentMemberRepository(memberDao)
+        val appDao = AppDatabase.getDatabase(context).appDao()
+        repository = AppRepository(appDao)
         fetchParliamentMembers()
     }
 

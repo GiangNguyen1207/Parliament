@@ -1,4 +1,4 @@
-package com.example.android.parliament
+package com.example.android.parliament.screens.member
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.android.parliament.R
 import com.example.android.parliament.databinding.FragmentMemberBinding
-import com.example.android.parliament.ui.AppViewModel
-import com.example.android.parliament.ui.AppViewModelFactory
 
 class MemberFragment : Fragment() {
-    private lateinit var appViewModel: AppViewModel
-    private lateinit var appViewModelFactory: AppViewModelFactory
+    private lateinit var memberViewModel: MemberViewModel
+    private lateinit var memberViewModelFactory: MemberViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,9 +24,9 @@ class MemberFragment : Fragment() {
             R.layout.fragment_member, container, false
         )
 
-        appViewModelFactory = AppViewModelFactory(requireContext())
-        appViewModel = ViewModelProvider(this, appViewModelFactory)
-            .get(AppViewModel::class.java)
+        memberViewModelFactory = MemberViewModelFactory(requireContext())
+        memberViewModel = ViewModelProvider(this, memberViewModelFactory)
+            .get(MemberViewModel::class.java)
 
         return binding.root
     }

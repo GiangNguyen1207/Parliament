@@ -1,4 +1,4 @@
-package com.example.android.parliament
+package com.example.android.parliament.screens.memberList
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.example.android.parliament.R
 import com.example.android.parliament.databinding.FragmentMemberListBinding
 
 class MemberListFragment : Fragment() {
