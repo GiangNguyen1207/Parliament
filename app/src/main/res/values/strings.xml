@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Parliament</string>
+    <string name="name">%1$s %2$s</string>
+    <string name="age">Age: %1$d</string>
+    <string name="constituency">Constituency: %1$s</string>
+    <string name="random">Random</string>
+    <string name="title">Title: %1$s</string>
 </resources>
