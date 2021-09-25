@@ -10,4 +10,22 @@
     <string name="go_to_member_list">Go To Member List</string>
     <string name="go_to_single_member">go to single member</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sd_eng">Social Democratic Party</string>
+    <string name="ps_eng">Finns Party</string>
+    <string name="kok_eng">National Coalition Party</string>
+    <string name="kesk_eng">Centre Party</string>
+    <string name="vihr_eng">Green League</string>
+    <string name="vas_eng">Left Alliance</string>
+    <string name="r_eng">Swedish People\'s Party</string>
+    <string name="liik_eng">Movement Now</string>
+    <string name="kd_eng">Christian Democrats</string>
+    <string name="sd">Suomen Sosialidemokraattinen puolue</string>
+    <string name="ps">Perussuomalaiset</string>
+    <string name="kok">Kansallinen Kokoomus</string>
+    <string name="kesk">Suomen Keskusta</string>
+    <string name="vihr">Vihreä liitto</string>
+    <string name="vas">Vasemmistoliitto</string>
+    <string name="r">Svenska folkpartiet</string>
+    <string name="liik">Liike Nyt</string>
+    <string name="kd">Suomen Kristillisdemokraatit</string>
 </resources>

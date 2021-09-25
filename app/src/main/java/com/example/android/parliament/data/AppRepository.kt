@@ -9,4 +9,6 @@ class AppRepository(private val appDao: AppDao) {
     fun getAllMembers(): LiveData<List<ParliamentMember>> = appDao.readAllMembers()
 
     suspend fun insertMember(member: ParliamentMember) = appDao.insertMember(member)
+
+    fun getAllParties(): LiveData<List<String>> = appDao.readAllParties()
 }
