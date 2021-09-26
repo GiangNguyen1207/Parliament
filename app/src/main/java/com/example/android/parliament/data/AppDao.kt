@@ -14,8 +14,8 @@ interface AppDao {
     @Query("SELECT * FROM parliament_member_table ORDER BY first_name ASC")
     fun readAllMembers(): LiveData<List<ParliamentMember>>
 
-    @Query("SELECT DISTINCT party FROM parliament_member_table")
-    fun readAllParties(): LiveData<List<String>>
+    @Query("SELECT DISTINCT party, party_in_fin as partyInFin, party_in_eng as partyInEng FROM parliament_member_table ORDER BY party ASC")
+    fun readAllParties(): LiveData<List<Party>>
 
     /*@Query("SELECT * FROM parliament_member_table WHERE party")
     fun readMemberList(): LiveData<List<ParliamentMember>>*/

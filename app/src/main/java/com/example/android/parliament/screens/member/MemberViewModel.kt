@@ -11,25 +11,9 @@ import java.lang.Exception
 
 class MemberViewModel(context: Context) : ViewModel() {
     private val repository: AppRepository
-    private val response = MutableLiveData<String>()
 
     init {
         val appDao = AppDatabase.getDatabase(context).appDao()
         repository = AppRepository(appDao)
-        fetchParliamentMembers()
-    }
-
-    private fun fetchParliamentMembers() {
-        viewModelScope.launch {
-            try {
-                val allMembers = repository.fetchAllMembers()
-                for (member in allMembers) {
-                    repository.insertMember(member)
-                }
-
-            } catch(error: Exception) {
-                response.value = "Failure + ${error.message}"
-            }
-        }
     }
 }

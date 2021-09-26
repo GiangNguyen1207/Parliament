@@ -21,14 +21,14 @@ data class ParliamentMember (
     @ColumnInfo(name = "party")
     val party: String,
 
+    @ColumnInfo(name = "party_in_fin")
+    val partyFinName: String? = null,
+
+    @ColumnInfo(name = "party_in_eng")
+    val partyEngName: String? = null,
+
     @ColumnInfo(name = "minister")
     val minister: Boolean = false,
-
-    @ColumnInfo(name = "picture")
-    val picture: String = "",
-
-    @ColumnInfo(name = "twitter")
-    val twitter: String = "",
 
     @ColumnInfo(name = "born_year")
     val bornYear: Int = 0,

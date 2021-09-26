@@ -10,5 +10,5 @@ class AppRepository(private val appDao: AppDao) {
 
     suspend fun insertMember(member: ParliamentMember) = appDao.insertMember(member)
 
-    fun getAllParties(): LiveData<List<String>> = appDao.readAllParties()
+    fun getAllParties(): LiveData<List<Party>> = appDao.readAllParties()
 }
