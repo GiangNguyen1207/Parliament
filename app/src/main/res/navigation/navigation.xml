@@ -4,40 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/partyListFragment">
-
     <fragment
         android:id="@+id/partyListFragment"
         android:name="com.example.android.parliament.screens.partyList.PartyListFragment"
-        android:label="fragment_party_list"
-        tools:layout="@layout/fragment_party_list">
+        android:label="PartyListFragment"
+        tools:layout="@layout/fragment_party_list" >
         <action
             android:id="@+id/action_partyListFragment_to_memberListFragment"
-            app:destination="@id/memberListFragment" />
+            app:destination="@id/memberListFragment">
+        </action>
+
     </fragment>
     <fragment
         android:id="@+id/memberListFragment"
         android:name="com.example.android.parliament.screens.memberList.MemberListFragment"
-        android:label="fragment_member_list"
-        tools:layout="@layout/fragment_member_list">
+        android:label="MemberListFragment"
+        tools:layout="@layout/fragment_member_list" >
         <action
             android:id="@+id/action_memberListFragment_to_memberFragment"
-            app:destination="@id/singleMemberFragment"
-            app:popUpToInclusive="false" />
+            app:destination="@id/memberFragment" />
         <action
             android:id="@+id/action_memberListFragment_to_partyListFragment"
-            app:destination="@id/partyListFragment"
-            app:popUpTo="@id/partyListFragment"
-            app:popUpToInclusive="false" />
+            app:destination="@id/partyListFragment" />
+        <argument
+            android:name="party"
+            app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/singleMemberFragment"
+        android:id="@+id/memberFragment"
         android:name="com.example.android.parliament.screens.member.MemberFragment"
-        android:label="SingleMemberFragment"
-        tools:layout="@layout/fragment_member">
+        android:label="MemberFragment"
+        tools:layout="@layout/fragment_member" >
         <action
             android:id="@+id/action_memberFragment_to_memberListFragment"
-            app:destination="@id/memberListFragment"
-            app:popUpTo="@id/memberListFragment"
-            app:popUpToInclusive="false" />
+            app:destination="@id/memberListFragment" />
     </fragment>
 </navigation>

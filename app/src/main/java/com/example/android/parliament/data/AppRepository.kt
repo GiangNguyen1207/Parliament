@@ -1,6 +1,7 @@
 package com.example.android.parliament.data
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.android.parliament.network.MembersApi
 
 class AppRepository(private val appDao: AppDao) {
@@ -11,4 +12,6 @@ class AppRepository(private val appDao: AppDao) {
     suspend fun insertMember(member: ParliamentMember) = appDao.insertMember(member)
 
     fun getAllParties(): LiveData<List<Party>> = appDao.readAllParties()
+
+    fun getMemberList(party: String): LiveData<List<ParliamentMember>> = appDao.readMemberList(party)
 }

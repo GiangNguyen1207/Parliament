@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.android.parliament.R
 import com.example.android.parliament.databinding.FragmentPartyListBinding
@@ -20,18 +19,18 @@ class PartyListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val binding = DataBindingUtil.inflate<FragmentPartyListBinding>(
             inflater,
             R.layout.fragment_party_list, container, false
         )
+        binding.lifecycleOwner = this
 
         partyListVmFactory = PartyListVmFactory(requireContext())
         partyListViewModel = ViewModelProvider(this, partyListVmFactory)
             .get(PartyListViewModel::class.java)
 
-        val partyListAdapter = PartyListAdapter(PartyListener {
-            partyListViewModel.navigateToMemberList(it)
+        val partyListAdapter = PartyListAdapter(PartyListener { party ->
+            partyListViewModel.navigateToMemberList(party)
         })
         binding.partyListRv.adapter = partyListAdapter
 
@@ -39,15 +38,13 @@ class PartyListFragment : Fragment() {
             partyListAdapter.partyList = it
         })
 
-        partyListViewModel.navigation.observe(viewLifecycleOwner, {
-            val action = PartyListFragmentDirections.actionPartyListFragmentToMemberListFragment()
-            Navigation.findNavController(requireView()).navigate(action)
-
-            /*this.findNavController()
-                .navigate(
-                    PartyListFragmentDirections.actionPartyListFragmentToMemberListFragment()
-                )*/
-            partyListViewModel.doneNavigating()
+        partyListViewModel.navigation.observe(viewLifecycleOwner, { party ->
+            if (party != null) {
+                this.findNavController().navigate(
+                    PartyListFragmentDirections.actionPartyListFragmentToMemberListFragment(party)
+                )
+                partyListViewModel.doneNavigating()
+            }
         })
 
         return binding.root

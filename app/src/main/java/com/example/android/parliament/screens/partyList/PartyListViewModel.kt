@@ -1,12 +1,10 @@
 package com.example.android.parliament.screens.partyList
 
 import android.content.Context
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.findNavController
 import com.example.android.parliament.R
 import com.example.android.parliament.data.AppDatabase
 import com.example.android.parliament.data.AppRepository
@@ -18,7 +16,10 @@ class PartyListViewModel(context: Context) : ViewModel() {
     private val repository: AppRepository
     private val response = MutableLiveData<String>()
     private var _navigation = MutableLiveData<String>()
-    var allParties: LiveData<List<Party>>
+    private var _allParties: LiveData<List<Party>>
+
+    val allParties: LiveData<List<Party>>
+        get() = _allParties
 
     val navigation: LiveData<String>
         get() = _navigation
@@ -26,7 +27,7 @@ class PartyListViewModel(context: Context) : ViewModel() {
     init {
         val appDao = AppDatabase.getDatabase(context).appDao()
         repository = AppRepository(appDao)
-        allParties = repository.getAllParties()
+        _allParties = repository.getAllParties()
         fetchParliamentMembers(context)
     }
 
