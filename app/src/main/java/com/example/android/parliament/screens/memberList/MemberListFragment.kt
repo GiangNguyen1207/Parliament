@@ -19,22 +19,27 @@ class MemberListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding = DataBindingUtil.inflate<FragmentMemberListBinding>(inflater,
             R.layout.fragment_member_list,container,false)
 
-        binding.lifecycleOwner = this
-
         val party = args.party
+        val memberListAdapter = MemberListAdapter()
+
+        binding.lifecycleOwner = this
+        binding.title.text = getString(R.string.member_list, party)
+        binding.memberListRv.adapter = memberListAdapter
 
         memberListVmFactory = MemberListVmFactory(requireContext())
         memberListViewModel = ViewModelProvider(this, memberListVmFactory)
             .get(MemberListViewModel::class.java)
 
+        memberListViewModel.getPartyFinName(party)
         memberListViewModel.readMemberList(party)
-        memberListViewModel.allMembers.observe(viewLifecycleOwner, {
+        memberListViewModel.memberList.observe(viewLifecycleOwner, {
             println(it)
+            memberListAdapter.memberList = it
         })
 
         return binding.root

@@ -23,16 +23,17 @@ class PartyListFragment : Fragment() {
             inflater,
             R.layout.fragment_party_list, container, false
         )
-        binding.lifecycleOwner = this
-
-        partyListVmFactory = PartyListVmFactory(requireContext())
-        partyListViewModel = ViewModelProvider(this, partyListVmFactory)
-            .get(PartyListViewModel::class.java)
 
         val partyListAdapter = PartyListAdapter(PartyListener { party ->
             partyListViewModel.navigateToMemberList(party)
         })
+
+        binding.lifecycleOwner = this
         binding.partyListRv.adapter = partyListAdapter
+
+        partyListVmFactory = PartyListVmFactory(requireContext())
+        partyListViewModel = ViewModelProvider(this, partyListVmFactory)
+            .get(PartyListViewModel::class.java)
 
         partyListViewModel.allParties.observe(viewLifecycleOwner, {
             partyListAdapter.partyList = it

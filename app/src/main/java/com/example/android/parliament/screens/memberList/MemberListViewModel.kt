@@ -10,18 +10,26 @@ import com.example.android.parliament.data.ParliamentMember
 
 class MemberListViewModel(context: Context) : ViewModel() {
     private val repository: AppRepository
-    private lateinit var _allMembers: LiveData<List<ParliamentMember>>
+    private var _partyName = MutableLiveData<String>()
+    private lateinit var _memberList: LiveData<List<ParliamentMember>>
 
-    val allMembers: LiveData<List<ParliamentMember>>
-        get() = _allMembers
+    val memberList: LiveData<List<ParliamentMember>>
+        get() = _memberList
+
+    val partyName: LiveData<String>
+        get() = _partyName
 
     init {
         val appDao = AppDatabase.getDatabase(context).appDao()
         repository = AppRepository(appDao)
+    }
 
+    fun getPartyFinName(party: String) {
+        val partyNameList = repository.getPartyFinName(party)
     }
 
     fun readMemberList(party: String) {
-        _allMembers = repository.getMemberList(party)
+        _memberList = repository.getMemberList(party)
     }
+
 }
