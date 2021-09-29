@@ -28,7 +28,6 @@ class MemberListFragment : Fragment() {
         val memberListAdapter = MemberListAdapter()
 
         binding.lifecycleOwner = this
-        binding.title.text = getString(R.string.member_list, party)
         binding.memberListRv.adapter = memberListAdapter
 
         memberListVmFactory = MemberListVmFactory(requireContext())
@@ -37,8 +36,12 @@ class MemberListFragment : Fragment() {
 
         memberListViewModel.getPartyFinName(party)
         memberListViewModel.readMemberList(party)
+
+        memberListViewModel.partyFinName.observe(viewLifecycleOwner, {
+            binding.title.text = getString(R.string.member_list, it)
+        })
+
         memberListViewModel.memberList.observe(viewLifecycleOwner, {
-            println(it)
             memberListAdapter.memberList = it
         })
 

@@ -14,8 +14,8 @@
             android:layout_height="200dp"
             tools:src="@drawable/ic_launcher_background"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/margin"
-            android:layout_marginRight="@dimen/margin" />
+            android:layout_marginLeft="@dimen/small"
+            android:layout_marginRight="@dimen/small" />
 
         <TextView
             android:id="@+id/name"
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginTop="@dimen/big"
             android:text="@string/random"
             app:backgroundTint="#03A9F4" />
 
