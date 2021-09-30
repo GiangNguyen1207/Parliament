@@ -6,12 +6,16 @@
         <variable
             name="member"
             type="com.example.android.parliament.data.ParliamentMember" />
+        <variable
+            name="clickListener"
+            type="com.example.android.parliament.screens.memberList.MemberListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/medium">
+        android:paddingBottom="@dimen/medium"
+        android:onClick="@{() -> clickListener.onClick(member.personNumber)}">
 
         <TextView
             android:id="@+id/member_name"

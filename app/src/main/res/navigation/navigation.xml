@@ -8,35 +8,38 @@
         android:id="@+id/partyListFragment"
         android:name="com.example.android.parliament.screens.partyList.PartyListFragment"
         android:label="PartyListFragment"
-        tools:layout="@layout/fragment_party_list" >
+        tools:layout="@layout/fragment_party_list">
         <action
             android:id="@+id/action_partyListFragment_to_memberListFragment"
-            app:destination="@id/memberListFragment">
-        </action>
-
+            app:destination="@id/memberListFragment" />
     </fragment>
     <fragment
         android:id="@+id/memberListFragment"
         android:name="com.example.android.parliament.screens.memberList.MemberListFragment"
         android:label="MemberListFragment"
-        tools:layout="@layout/fragment_member_list" >
+        tools:layout="@layout/fragment_member_list">
         <action
-            android:id="@+id/action_memberListFragment_to_memberFragment"
-            app:destination="@id/memberFragment" />
+            android:id="@+id/action_memberListFragment_to_memberDetailsFragment"
+            app:destination="@id/memberDetailsFragment" />
+        <argument
+            android:name="party"
+            app:argType="string"
+            android:defaultValue="" />
         <action
             android:id="@+id/action_memberListFragment_to_partyListFragment"
             app:destination="@id/partyListFragment" />
-        <argument
-            android:name="party"
-            app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/memberFragment"
-        android:name="com.example.android.parliament.screens.member.MemberFragment"
-        android:label="MemberFragment"
-        tools:layout="@layout/fragment_member" >
+        android:id="@+id/memberDetailsFragment"
+        android:name="com.example.android.parliament.screens.memberDetails.MemberDetailsFragment"
+        android:label="MemberDetailsFragment"
+        tools:layout="@layout/fragment_member_details">
         <action
-            android:id="@+id/action_memberFragment_to_memberListFragment"
+            android:id="@+id/action_memberDetailsFragment_to_memberListFragment"
             app:destination="@id/memberListFragment" />
+        <!--<argument
+            android:name="personNumber"
+            app:argType="integer"
+            android:defaultValue=0/> !-->
     </fragment>
 </navigation>

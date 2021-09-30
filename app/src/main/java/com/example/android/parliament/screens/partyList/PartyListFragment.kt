@@ -13,7 +13,6 @@ import com.example.android.parliament.databinding.FragmentPartyListBinding
 
 class PartyListFragment : Fragment() {
     private lateinit var partyListViewModel: PartyListViewModel
-    private lateinit var partyListVmFactory: PartyListVmFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,12 +30,11 @@ class PartyListFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.partyListRv.adapter = partyListAdapter
 
-        partyListVmFactory = PartyListVmFactory(requireContext())
-        partyListViewModel = ViewModelProvider(this, partyListVmFactory)
+        partyListViewModel = ViewModelProvider(this)
             .get(PartyListViewModel::class.java)
 
         partyListViewModel.allParties.observe(viewLifecycleOwner, {
-            partyListAdapter.partyList = it
+            partyListAdapter.submitList(it)
         })
 
         partyListViewModel.navigation.observe(viewLifecycleOwner, { party ->

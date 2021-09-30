@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.android.parliament.MyApp
 
 @Database(entities = [ParliamentMember::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
@@ -14,12 +15,12 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var db: AppDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase {
+        fun getDatabase(): AppDatabase {
             if (db != null) return db as AppDatabase
 
             synchronized(this) {
                 val appDb = Room.databaseBuilder(
-                    context.applicationContext,
+                    MyApp.appContext,
                     AppDatabase::class.java,
                     "app-database"
                 )

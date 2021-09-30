@@ -2,17 +2,16 @@ package com.example.android.parliament.screens.partyList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.parliament.R
+import com.example.android.parliament.data.ParliamentMember
 import com.example.android.parliament.data.Party
 import com.example.android.parliament.databinding.PartyRowBinding
 
-class PartyListAdapter(private val clickListener: PartyListener) : RecyclerView.Adapter<PartyListAdapter.ViewHolder>() {
-    var partyList = listOf<Party>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+class PartyListAdapter(private val clickListener: PartyListener) :
+    ListAdapter<Party, PartyListAdapter.ViewHolder>(PartyListDiffCallBack()) {
 
     class ViewHolder private constructor(private val binding: PartyRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -49,14 +48,21 @@ class PartyListAdapter(private val clickListener: PartyListener) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(partyList[position], clickListener)
-    }
-
-    override fun getItemCount(): Int {
-        return partyList.size
+        holder.bind(getItem(position), clickListener)
     }
 }
 
+class PartyListDiffCallBack: DiffUtil.ItemCallback<Party>() {
+    override fun areItemsTheSame(oldItem: Party, newItem: Party): Boolean {
+        return oldItem.party == newItem.party
+    }
+
+    override fun areContentsTheSame(oldItem: Party, newItem: Party): Boolean {
+        return oldItem == newItem
+    }
+
+}
+
 class PartyListener(val clickListener: (party: String) -> Unit) {
-    fun onClick(party: Party) = clickListener(party.party)
+    fun onClick(party: String) = clickListener(party)
 }

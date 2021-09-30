@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.parliament.MyApp
 import com.example.android.parliament.R
 import com.example.android.parliament.data.AppDatabase
 import com.example.android.parliament.data.AppRepository
@@ -12,7 +13,7 @@ import com.example.android.parliament.data.ParliamentMember
 import com.example.android.parliament.data.Party
 import kotlinx.coroutines.launch
 
-class PartyListViewModel(context: Context) : ViewModel() {
+class PartyListViewModel : ViewModel() {
     private val repository: AppRepository
     private val response = MutableLiveData<String>()
     private var _navigation = MutableLiveData<String>()
@@ -25,21 +26,21 @@ class PartyListViewModel(context: Context) : ViewModel() {
         get() = _navigation
 
     init {
-        val appDao = AppDatabase.getDatabase(context).appDao()
+        val appDao = AppDatabase.getDatabase().appDao()
         repository = AppRepository(appDao)
         _allParties = repository.getAllParties()
-        fetchParliamentMembers(context)
+        fetchParliamentMembers()
     }
 
-    private fun fetchParliamentMembers(context: Context) {
+    private fun fetchParliamentMembers() {
         viewModelScope.launch {
             try {
                 val allMembers = repository.fetchAllMembers()
                 for (member in allMembers) {
                     val mem = ParliamentMember(
                         member.personNumber, member.seatNumber, member.last,
-                        member.first, member.party, context.getString(displayFinName(member.party)),
-                        context.getString(displayEngName(member.party)), member.minister,
+                        member.first, member.party, MyApp.appContext.getString(displayFinName(member.party)),
+                        MyApp.appContext.getString(displayEngName(member.party)), member.minister,
                         member.bornYear, member.constituency
                     )
                     repository.insertMember(mem)
