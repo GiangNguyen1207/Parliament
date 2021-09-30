@@ -3,58 +3,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".screens.MemberDetails">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/party_image"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="200dp"
-            tools:src="@drawable/ic_launcher_background"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/small"
-            android:layout_marginRight="@dimen/small" />
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/name"
-            style="@style/text"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/name"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/small"
+            android:layout_marginRight="@dimen/small"
+            style="@style/member_details_text"
+            app:layout_constraintBottom_toTopOf="@+id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/party_image"
+            app:layout_constraintTop_toTopOf="@+id/party_image" />
 
         <TextView
             android:id="@+id/title"
-            style="@style/text"
-            android:layout_width="match_parent"
+            style="@style/member_details_text"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/title" />
+            android:text="@string/title"
+            android:layout_marginRight="@dimen/small"
+            app:layout_constraintBottom_toTopOf="@+id/age"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/party_image"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <TextView
             android:id="@+id/age"
-            style="@style/text"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/age" />
+            android:text="@string/age"
+            style="@style/member_details_text"
+            android:layout_marginRight="@dimen/small"
+            app:layout_constraintBottom_toTopOf="@+id/constituency"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/party_image"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <TextView
             android:id="@+id/constituency"
-            style="@style/text"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/constituency" />
+            android:text="@string/constituency"
+            style="@style/member_details_text"
+            android:layout_marginBottom="@dimen/small"
+            android:layout_marginRight="@dimen/small"
+            app:layout_constraintBottom_toBottomOf="@+id/party_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/party_image"
+            app:layout_constraintTop_toBottomOf="@+id/age" />
 
-        <Button
-            android:id="@+id/random_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/big"
-            android:text="@string/random"
-            app:backgroundTint="#03A9F4" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
