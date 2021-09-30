@@ -3,72 +3,105 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="member"
+            type="com.example.android.parliament.data.ParliamentMember" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/party_image"
+            android:id="@+id/member_image"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/small"
+            android:layout_marginStart="@dimen/small"
+            android:contentDescription="@string/member_image"
             android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:src="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/name"
+            style="@style/member_details_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/name"
+            android:layout_marginStart="@dimen/small"
             android:layout_marginTop="@dimen/small"
-            android:layout_marginRight="@dimen/small"
-            style="@style/member_details_text"
+            android:layout_marginEnd="@dimen/small"
+            android:text="@{@string/name(member.first, member.last)}"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/party_image"
-            app:layout_constraintTop_toTopOf="@+id/party_image" />
+            app:layout_constraintStart_toEndOf="@+id/member_image"
+            app:layout_constraintTop_toTopOf="@+id/member_image" />
 
         <TextView
             android:id="@+id/title"
             style="@style/member_details_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/title"
-            android:layout_marginRight="@dimen/small"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginEnd="@dimen/small"
+            android:text="@{@string/title(member.minister ? @string/minister : @string/member_of_parliament)}"
             app:layout_constraintBottom_toTopOf="@+id/age"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/party_image"
+            app:layout_constraintStart_toEndOf="@+id/member_image"
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <TextView
             android:id="@+id/age"
+            style="@style/member_details_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginEnd="@dimen/small"
             android:text="@string/age"
-            style="@style/member_details_text"
-            android:layout_marginRight="@dimen/small"
             app:layout_constraintBottom_toTopOf="@+id/constituency"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/party_image"
+            app:layout_constraintStart_toEndOf="@+id/member_image"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <TextView
             android:id="@+id/constituency"
+            style="@style/member_details_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/constituency"
-            style="@style/member_details_text"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginEnd="@dimen/small"
             android:layout_marginBottom="@dimen/small"
-            android:layout_marginRight="@dimen/small"
-            app:layout_constraintBottom_toBottomOf="@+id/party_image"
+            android:text="@{@string/constituency(member.constituency)}"
+            app:layout_constraintBottom_toBottomOf="@+id/member_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/party_image"
+            app:layout_constraintStart_toEndOf="@+id/member_image"
             app:layout_constraintTop_toBottomOf="@+id/age" />
 
+        <TextView
+            android:id="@+id/grading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small"
+            android:text="@string/grading"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/grading_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/member_image" />
+
+        <RatingBar
+            android:id="@+id/grading_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small"
+            android:stepSize="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/grading" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

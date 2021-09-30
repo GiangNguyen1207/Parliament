@@ -21,8 +21,10 @@ class MemberListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val binding = DataBindingUtil.inflate<FragmentMemberListBinding>(inflater,
-            R.layout.fragment_member_list,container,false)
+        val binding = DataBindingUtil.inflate<FragmentMemberListBinding>(
+            inflater,
+            R.layout.fragment_member_list, container, false
+        )
 
         val party = args.party
         val memberListAdapter = MemberListAdapter(MemberListener { personNumber ->
@@ -47,10 +49,11 @@ class MemberListFragment : Fragment() {
 
         memberListViewModel.navigation.observe(viewLifecycleOwner, { personNumber ->
             if (personNumber != null) {
-                this.findNavController()
-                    .navigate(
-                        MemberListFragmentDirections.actionMemberListFragmentToMemberDetailsFragment()
+                this.findNavController().navigate(
+                    MemberListFragmentDirections.actionMemberListFragmentToMemberDetailsFragment(
+                        personNumber
                     )
+                )
                 memberListViewModel.doneNavigating()
             }
         })

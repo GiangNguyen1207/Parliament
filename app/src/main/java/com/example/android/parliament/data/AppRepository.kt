@@ -16,4 +16,10 @@ class AppRepository(private val appDao: AppDao) {
     fun getPartyFinName(party: String): LiveData<String> = appDao.readPartyFinName(party)
 
     fun getMemberList(party: String): LiveData<List<ParliamentMember>> = appDao.readMemberList(party)
+
+    fun getMemberDetails(personNumber: Int): LiveData<ParliamentMember> = appDao.getMemberDetails(personNumber)
+
+    fun insertGrade(personNumber: Int) = appDao.insertGrade(personNumber)
+
+    fun getMemberGrade(personNumber: Int): LiveData<Grade> = appDao.getMemberGrade(personNumber)
 }

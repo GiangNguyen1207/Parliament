@@ -25,5 +25,14 @@ interface AppDao {
     @Query("SELECT * FROM parliament_member_table WHERE party = :party ORDER BY first_name ASC")
     fun readMemberList(party: String): LiveData<List<ParliamentMember>>
 
+    @Query("SELECT * FROM parliament_member_table WHERE personNumber = :personNumber")
+    fun getMemberDetails(personNumber: Int): LiveData<ParliamentMember>
+
+    @Insert
+    fun insertGrade(personNumber: Int)
+
+    @Query("SELECT grade FROM member_grade_table WHERE personNumber = :personNumber")
+    fun getMemberGrade(personNumber: Int): LiveData<Grade>
+
     //@Query("SELECT * FROM parliament_member_table WHERE party = 'kesk' ")
 }
