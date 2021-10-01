@@ -1,11 +1,12 @@
 package com.example.android.parliament.screens.memberDetails
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.android.parliament.R
@@ -30,15 +31,36 @@ class MemberDetailsFragment : Fragment() {
         val personNumber = args.personNumber
 
         binding.lifecycleOwner = this
+        binding.submit.setOnClickListener { memberDetailsViewModel.onButtonClick() }
 
         memberDetailsViewModel = ViewModelProvider(this)
             .get(MemberDetailsViewModel::class.java)
 
         memberDetailsViewModel.getMemberDetails(personNumber)
+        memberDetailsViewModel.getMemberRate(personNumber)
 
         memberDetailsViewModel.memberDetails.observe(viewLifecycleOwner, { member ->
             binding.member = member
             binding.age.text = getString(R.string.age, currentYear - member.bornYear)
+        })
+
+        memberDetailsViewModel.isClicked.observe(viewLifecycleOwner, { click ->
+            if (click) {
+                memberDetailsViewModel.addRatingComment(
+                    personNumber,
+                    binding.gradingBar.rating,
+                    binding.comment.text.toString()
+                )
+                Toast.makeText(context, "Graded Successfully", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        memberDetailsViewModel.rates.observe(viewLifecycleOwner, {
+            memberDetailsViewModel.calculateAverageRate(it)
+        })
+
+        memberDetailsViewModel.averageRate.observe(viewLifecycleOwner, { rate ->
+            binding.averageRate.text = getString(R.string.average_rate, rate)
         })
 
         return binding.root

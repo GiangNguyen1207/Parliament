@@ -30,13 +30,13 @@
 
         <TextView
             android:id="@+id/name"
-            style="@style/member_details_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small"
             android:layout_marginTop="@dimen/small"
             android:layout_marginEnd="@dimen/small"
             android:text="@{@string/name(member.first, member.last)}"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/title"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,24 +84,70 @@
             app:layout_constraintTop_toBottomOf="@+id/age" />
 
         <TextView
-            android:id="@+id/grading"
+            android:id="@+id/averageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small"
-            android:text="@string/grading"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/grading_bar"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginTop="@dimen/medium"
+            android:text="@string/rating"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/member_image" />
+
+        <TextView
+            android:id="@+id/averageRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:layout_marginStart="@dimen/small"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@string/average_rate"
+            app:layout_constraintStart_toEndOf="@+id/averageTitle"
             app:layout_constraintTop_toBottomOf="@+id/member_image" />
 
         <RatingBar
             android:id="@+id/grading_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small"
             android:stepSize="0.5"
+            android:layout_marginTop="@dimen/small"
+            android:layout_marginStart="@dimen/small"
+            app:layout_constraintBottom_toTopOf="@+id/comment"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/grading" />
+            app:layout_constraintTop_toBottomOf="@+id/averageTitle" />
+
+        <EditText
+            android:id="@+id/comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box"
+            android:gravity="top"
+            android:hint="@string/comments"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:padding="@dimen/small"
+            android:layout_marginEnd="@dimen/small"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginTop="@dimen/small"
+            app:layout_constraintBottom_toTopOf="@+id/submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/grading_bar" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small"
+            android:text="@string/submit"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginEnd="@dimen/small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

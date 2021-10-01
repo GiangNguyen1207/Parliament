@@ -1,8 +1,6 @@
 package com.example.android.parliament.data
 
-import androidx.annotation.Nullable
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -29,10 +27,19 @@ interface AppDao {
     fun getMemberDetails(personNumber: Int): LiveData<ParliamentMember>
 
     @Insert
-    fun insertGrade(personNumber: Int)
+    suspend fun insertRate(rate: Rating)
 
-    @Query("SELECT grade FROM member_grade_table WHERE personNumber = :personNumber")
-    fun getMemberGrade(personNumber: Int): LiveData<Grade>
+    @Insert
+    suspend fun insertComment(comment: Comment)
+
+    @Query("SELECT rating from member_rating_table WHERE personNumber = :personNumber")
+    fun getMemberRate(personNumber: Int): LiveData<List<Double>>
+
+    //@Insert
+    //suspend fun insertGrade(ratingComment: RatingComment)
+
+    /*@Query("SELECT grade FROM member_grade_table WHERE personNumber = :personNumber")
+    fun getMemberGrade(personNumber: Int): LiveData<Grade>*/
 
     //@Query("SELECT * FROM parliament_member_table WHERE party = 'kesk' ")
 }

@@ -2,8 +2,6 @@
 <resources>
     <style name="member_details_text">
         <item name="android:textSize">16sp</item>
-        <item name="android:layout_marginLeft">@dimen/small</item>
-        <item name="android:layout_marginTop">@dimen/small</item>
         <item name="android:color">@color/black</item>
     </style>
 </resources>

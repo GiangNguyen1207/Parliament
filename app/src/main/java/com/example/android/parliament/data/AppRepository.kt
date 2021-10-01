@@ -2,6 +2,7 @@ package com.example.android.parliament.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Query
 import com.example.android.parliament.network.MembersApi
 
 class AppRepository(private val appDao: AppDao) {
@@ -19,7 +20,14 @@ class AppRepository(private val appDao: AppDao) {
 
     fun getMemberDetails(personNumber: Int): LiveData<ParliamentMember> = appDao.getMemberDetails(personNumber)
 
-    fun insertGrade(personNumber: Int) = appDao.insertGrade(personNumber)
+    suspend fun insertRate(rate: Rating) = appDao.insertRate(rate)
 
-    fun getMemberGrade(personNumber: Int): LiveData<Grade> = appDao.getMemberGrade(personNumber)
+    suspend fun insertComment(comment: Comment) = appDao.insertComment(comment)
+
+    fun getMemberRate(personNumber: Int): LiveData<List<Double>> = appDao.getMemberRate(personNumber)
+
+
+    //suspend fun insertGrade(ratingComment: RatingComment) = appDao.insertGrade(ratingComment)
+
+    //fun getMemberGrade(personNumber: Int): LiveData<Grade> = appDao.getMemberGrade(personNumber)
 }
