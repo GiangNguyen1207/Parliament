@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.parliament.R
-import com.example.android.parliament.data.ParliamentMember
 import com.example.android.parliament.data.Party
 import com.example.android.parliament.databinding.PartyRowBinding
 
@@ -16,6 +15,7 @@ class PartyListAdapter(private val clickListener: PartyListener) :
     class ViewHolder private constructor(private val binding: PartyRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        //bind the party and click listener to enable using data variable in file xml.
         fun bind(party: Party, clickListener: PartyListener) {
             binding.party = party
             binding.clickListener = clickListener
@@ -52,6 +52,7 @@ class PartyListAdapter(private val clickListener: PartyListener) :
     }
 }
 
+//a callback class to observe the difference between two adapters.
 class PartyListDiffCallBack: DiffUtil.ItemCallback<Party>() {
     override fun areItemsTheSame(oldItem: Party, newItem: Party): Boolean {
         return oldItem.party == newItem.party
@@ -60,9 +61,10 @@ class PartyListDiffCallBack: DiffUtil.ItemCallback<Party>() {
     override fun areContentsTheSame(oldItem: Party, newItem: Party): Boolean {
         return oldItem == newItem
     }
-
 }
 
+/*a class for action click listener. Its parameter is the function, which receives a party name
+as a parameter. The only one method onClick is to call that function in parameter. */
 class PartyListener(val clickListener: (party: String) -> Unit) {
     fun onClick(party: String) = clickListener(party)
 }

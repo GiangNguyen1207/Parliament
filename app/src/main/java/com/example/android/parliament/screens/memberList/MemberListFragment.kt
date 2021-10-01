@@ -20,7 +20,6 @@ class MemberListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val binding = DataBindingUtil.inflate<FragmentMemberListBinding>(
             inflater,
             R.layout.fragment_member_list, container, false

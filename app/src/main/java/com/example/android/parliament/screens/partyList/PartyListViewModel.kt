@@ -14,8 +14,14 @@ import kotlinx.coroutines.launch
 
 class PartyListViewModel : ViewModel() {
     private val repository: AppRepository
+
+    //response from fetching data from the Internet
     private val response = MutableLiveData<String>()
+
+    //a flag for navigation
     private var _navigation = MutableLiveData<String>()
+
+    //a list of parties collected from db
     private var _allParties: LiveData<List<Party>>
 
     val allParties: LiveData<List<Party>>
@@ -24,6 +30,8 @@ class PartyListViewModel : ViewModel() {
     val navigation: LiveData<String>
         get() = _navigation
 
+    /*initialize database, list of parties and fetching data from the Internet in the beginning
+    when the app is launched */
     init {
         val appDao = AppDatabase.getDatabase().appDao()
         repository = AppRepository(appDao)
@@ -31,6 +39,8 @@ class PartyListViewModel : ViewModel() {
         fetchParliamentMembers()
     }
 
+    /*fetch parliament members from the Internet, then change some properties
+    and insert directly to the database */
     private fun fetchParliamentMembers() {
         viewModelScope.launch {
             try {
@@ -38,11 +48,12 @@ class PartyListViewModel : ViewModel() {
                 for (member in allMembers) {
                     val mem = ParliamentMember(
                         member.personNumber, member.seatNumber, member.last,
-                        member.first, member.party, MyApp.appContext.getString(displayFinName(member.party)),
-                        MyApp.appContext.getString(displayEngName(member.party)), member.minister,
+                        member.first, member.party, MyApp.appContext.getString(getFinName(member.party)),
+                        MyApp.appContext.getString(getEngName(member.party)), member.minister,
                         member.bornYear, member.constituency
                     )
                     repository.insertMember(mem)
+                    response.value = "Successfully"
                 }
 
             } catch (error: Exception) {
@@ -51,15 +62,20 @@ class PartyListViewModel : ViewModel() {
         }
     }
 
+    /*when user clicks a party, this function will be triggered,
+    and the party name will be saved into navigation value.
+    If the value is not null, user will be navigated to Member List of the specific party. */
     fun navigateToMemberList(party: String) {
         _navigation.value = party
     }
 
+    //call right after navigating to the Member List Fragment to avoid infinite loop
     fun doneNavigating() {
         _navigation.value = null
     }
 
-    private fun displayFinName(partyName: String): Int {
+    //get the Finnish name of the party to put in the database table column
+    private fun getFinName(partyName: String): Int {
         return when (partyName) {
             "ps" -> R.string.ps
             "sd" -> R.string.sd
@@ -73,7 +89,8 @@ class PartyListViewModel : ViewModel() {
         }
     }
 
-    private fun displayEngName(partyName: String): Int {
+    //get the English name of the party to put in the database table column
+    private fun getEngName(partyName: String): Int {
         return when (partyName) {
             "ps" -> R.string.ps_eng
             "sd" -> R.string.sd_eng

@@ -23,20 +23,29 @@ class PartyListFragment : Fragment() {
             R.layout.fragment_party_list, container, false
         )
 
+        //initialize the adapter for the list of party
         val partyListAdapter = PartyListAdapter(PartyListener { party ->
             partyListViewModel.navigateToMemberList(party)
         })
 
         binding.lifecycleOwner = this
+
+        //binding the adapter of recycler view
         binding.partyListRv.adapter = partyListAdapter
 
+        //initialize the view model for the fragment
         partyListViewModel = ViewModelProvider(this)
             .get(PartyListViewModel::class.java)
 
+        /*observe the list of party, if there is a new list,
+        then submit it to the adapter to update UI */
         partyListViewModel.allParties.observe(viewLifecycleOwner, {
             partyListAdapter.submitList(it)
         })
 
+        /*observe the users interaction to each party on the screen.
+        If they click a specific party -> set the value of navigation with a party name ->
+        check if the party is not null -> navigating user to new fragment -> set the value to null */
         partyListViewModel.navigation.observe(viewLifecycleOwner, { party ->
             if (party != null) {
                 this.findNavController().navigate(
