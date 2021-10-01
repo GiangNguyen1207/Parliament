@@ -84,70 +84,91 @@
             app:layout_constraintTop_toBottomOf="@+id/age" />
 
         <TextView
-            android:id="@+id/averageTitle"
+            android:id="@+id/average_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small"
-            android:layout_marginTop="@dimen/medium"
             android:text="@string/rating"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/comment_sv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/member_image" />
 
         <TextView
-            android:id="@+id/averageRate"
+            android:id="@+id/average_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium"
             android:layout_marginStart="@dimen/small"
+            android:text="@string/average_rate"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="@string/average_rate"
-            app:layout_constraintStart_toEndOf="@+id/averageTitle"
-            app:layout_constraintTop_toBottomOf="@+id/member_image" />
+            app:layout_constraintBottom_toBottomOf="@+id/average_title"
+            app:layout_constraintStart_toEndOf="@+id/average_title"
+            app:layout_constraintTop_toTopOf="@+id/average_title" />
 
         <RatingBar
             android:id="@+id/grading_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:stepSize="0.5"
-            android:layout_marginTop="@dimen/small"
             android:layout_marginStart="@dimen/small"
-            app:layout_constraintBottom_toTopOf="@+id/comment"
+            android:layout_marginTop="@dimen/small"
+            android:stepSize="0.5"
+            app:layout_constraintBottom_toTopOf="@+id/comment_edit_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/averageTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/comment_edit_text" />
 
         <EditText
-            android:id="@+id/comment"
+            android:id="@+id/comment_edit_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginTop="@dimen/small"
+            android:layout_marginEnd="@dimen/small"
             android:background="@drawable/box"
             android:gravity="top"
             android:hint="@string/comments"
             android:inputType="textMultiLine"
             android:lines="5"
             android:padding="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginTop="@dimen/small"
-            app:layout_constraintBottom_toTopOf="@+id/submit"
+            app:layout_constraintBottom_toTopOf="@+id/btn_submit"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/grading_bar" />
 
         <Button
-            android:id="@+id/submit"
+            android:id="@+id/btn_submit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small"
-            android:text="@string/submit"
             android:layout_marginStart="@dimen/small"
+            android:layout_marginTop="@dimen/small"
             android:layout_marginEnd="@dimen/small"
+            android:text="@string/submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/comment" />
+            app:layout_constraintTop_toBottomOf="@+id/comment_edit_text" />
+
+        <ScrollView
+            android:id="@+id/comment_sv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginTop="@dimen/small"
+            android:layout_marginEnd="@dimen/small"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/grading_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/average_title">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

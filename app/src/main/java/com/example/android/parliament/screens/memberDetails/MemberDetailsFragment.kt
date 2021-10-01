@@ -31,7 +31,7 @@ class MemberDetailsFragment : Fragment() {
         val personNumber = args.personNumber
 
         binding.lifecycleOwner = this
-        binding.submit.setOnClickListener { memberDetailsViewModel.onButtonClick() }
+        binding.btnSubmit.setOnClickListener { memberDetailsViewModel.onButtonClick() }
 
         memberDetailsViewModel = ViewModelProvider(this)
             .get(MemberDetailsViewModel::class.java)
@@ -49,7 +49,7 @@ class MemberDetailsFragment : Fragment() {
                 memberDetailsViewModel.addRatingComment(
                     personNumber,
                     binding.gradingBar.rating,
-                    binding.comment.text.toString()
+                    binding.commentEditText.text.toString()
                 )
                 Toast.makeText(context, "Graded Successfully", Toast.LENGTH_SHORT).show()
             }
