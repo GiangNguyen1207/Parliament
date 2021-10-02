@@ -25,7 +25,6 @@ class MemberListFragment : Fragment() {
             R.layout.fragment_member_list, container, false
         )
 
-        val party = args.party
         val memberListAdapter = MemberListAdapter(MemberListener { personNumber ->
             memberListViewModel.navigateToMemberDetails(personNumber)
         })
@@ -35,8 +34,8 @@ class MemberListFragment : Fragment() {
 
         memberListViewModel = ViewModelProvider(this).get(MemberListViewModel::class.java)
 
-        memberListViewModel.getPartyFinName(party)
-        memberListViewModel.readMemberList(party)
+        memberListViewModel.getPartyFinName(args.party)
+        memberListViewModel.readMemberList(args.party)
 
         memberListViewModel.partyFinName.observe(viewLifecycleOwner, {
             binding.title.text = getString(R.string.member_list, it)

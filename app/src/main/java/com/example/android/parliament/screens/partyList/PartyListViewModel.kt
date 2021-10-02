@@ -1,5 +1,6 @@
 package com.example.android.parliament.screens.partyList
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -50,7 +51,7 @@ class PartyListViewModel : ViewModel() {
                         member.personNumber, member.seatNumber, member.last,
                         member.first, member.party, MyApp.appContext.getString(getFinName(member.party)),
                         MyApp.appContext.getString(getEngName(member.party)), member.minister,
-                        member.bornYear, member.constituency
+                        member.bornYear, member.constituency, member.picture
                     )
                     repository.insertMember(mem)
                     response.value = "Successfully"

@@ -40,5 +40,20 @@
         <argument
             android:name="personNumber"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_memberDetailsFragment_to_allCommentsFragment"
+            app:destination="@id/allCommentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allCommentsFragment"
+        android:name="com.example.android.parliament.screens.comments.MemberCommentsFragment"
+        android:label="fragment_all_comments"
+        tools:layout="@layout/fragment_all_comments" >
+        <action
+            android:id="@+id/action_allCommentsFragment_to_memberDetailsFragment"
+            app:destination="@id/memberDetailsFragment" />
+        <argument
+            android:name="personNumber"
+            app:argType="integer" />
     </fragment>
 </navigation>

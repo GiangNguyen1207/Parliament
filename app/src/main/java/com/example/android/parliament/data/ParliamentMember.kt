@@ -34,5 +34,8 @@ data class ParliamentMember (
     val bornYear: Int = 0,
 
     @ColumnInfo(name = "constituency")
-    val constituency: String = ""
+    val constituency: String = "",
+
+    @ColumnInfo(name = "picture")
+    val picture: String
 )

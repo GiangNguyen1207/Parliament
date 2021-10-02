@@ -26,6 +26,8 @@ class AppRepository(private val appDao: AppDao) {
 
     fun getMemberRate(personNumber: Int): LiveData<List<Double>> = appDao.getMemberRate(personNumber)
 
+    fun getMemberComments(personNumber: Int): LiveData<List<Comment>> = appDao.getMemberComments(personNumber)
+
 
     //suspend fun insertGrade(ratingComment: RatingComment) = appDao.insertGrade(ratingComment)
 

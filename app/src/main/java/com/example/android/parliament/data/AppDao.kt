@@ -35,6 +35,8 @@ interface AppDao {
     @Query("SELECT rating from member_rating_table WHERE personNumber = :personNumber")
     fun getMemberRate(personNumber: Int): LiveData<List<Double>>
 
+    @Query("SELECT * from member_comment_table WHERE personNumber = :personNumber")
+    fun getMemberComments(personNumber: Int): LiveData<List<Comment>>
 
     //@Insert
     //suspend fun insertGrade(ratingComment: RatingComment)

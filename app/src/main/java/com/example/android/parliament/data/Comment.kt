@@ -10,6 +10,9 @@ data class Comment(
     val id: Int = 0,
 
     @ColumnInfo
+    val dateTime: String,
+
+    @ColumnInfo
     val personNumber: Int,
 
     @ColumnInfo(name = "comment")

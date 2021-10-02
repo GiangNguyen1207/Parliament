@@ -3,4 +3,5 @@
     <dimen name="small">16dp</dimen>
     <dimen name="medium">32dp</dimen>
     <dimen name="big">100dp</dimen>
+    <dimen name="padding">5dp</dimen>
 </resources>

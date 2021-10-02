@@ -1,6 +1,5 @@
 package com.example.android.parliament.screens.memberDetails
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +13,8 @@ class MemberDetailsViewModel : ViewModel() {
     private val _isClicked = MutableLiveData<Boolean>()
     private lateinit var _rates: LiveData<List<Double>>
     private val _averageRate = MutableLiveData<Double>()
+    private lateinit var _allComments: LiveData<List<String>>
+    private val _isNavigated = MutableLiveData<Boolean>()
 
     val memberDetails: LiveData<ParliamentMember>
         get() = _memberDetails
@@ -26,6 +27,12 @@ class MemberDetailsViewModel : ViewModel() {
 
     val averageRate: LiveData<Double>
         get() = _averageRate
+
+    val allComments: LiveData<List<String>>
+        get() = _allComments
+
+    val isNavigatedd: LiveData<Boolean>
+        get() = _isNavigated
 
     init {
         val appDao = AppDatabase.getDatabase().appDao()
@@ -40,12 +47,22 @@ class MemberDetailsViewModel : ViewModel() {
         _isClicked.value = true
     }
 
+    fun doneClick() {
+        _isClicked.value = false
+    }
+
     fun addRatingComment(personNumber: Int, rating: Float, comment: String) {
         viewModelScope.launch {
             repository.insertRate(Rating(personNumber = personNumber, rating = rating))
 
             if (comment.isNotEmpty()) {
-                repository.insertComment(Comment(personNumber = personNumber, comment = comment))
+                repository.insertComment(
+                    Comment(
+                        personNumber = personNumber,
+                        comment = comment,
+                        dateTime = Calendar().getDateAndTime()
+                    )
+                )
             }
         }
     }
@@ -54,9 +71,21 @@ class MemberDetailsViewModel : ViewModel() {
         _rates = repository.getMemberRate(personNumber)
     }
 
+    /*fun getMemberComments(personNumber: Int) {
+        _allComments = repository.getMemberComments(personNumber)
+    }*/
+
     fun calculateAverageRate(rates: List<Double>) {
         if (rates.isNotEmpty()) {
             _averageRate.value = rates.average()
         } else _averageRate.value = 0.0
+    }
+
+    fun navigateToAllComments() {
+        _isNavigated.value = true
+    }
+
+    fun doneNavigating() {
+        _isNavigated.value = false
     }
 }
