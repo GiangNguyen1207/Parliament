@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.work.*
+import com.example.android.parliament.databinding.ActivityMainBinding
 import com.example.android.parliament.workManager.FetchDataWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,8 +14,11 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         delayedInit()
+        //manageFetchingDataStatus(this, binding)
     }
 }
 
@@ -28,9 +32,8 @@ private fun delayedInit() {
 /*function to ask Work Manager to fetch data for the first time when the app is first launched and
 there is no data in db */
 private fun fetchDataAtFirst() {
-    WorkManager.getInstance().enqueue(
-        OneTimeWorkRequestBuilder<FetchDataWorker>().build()
-    )
+    WorkManager.getInstance()
+        .enqueue(OneTimeWorkRequestBuilder<FetchDataWorker>().addTag("dataFetchin").build())
 }
 
 /*function to ask Work Manager to fetch Data 1 time/day when there is Wifi or
@@ -58,3 +61,30 @@ private fun setupRecurringWork() {
         repeatingRequest
     )
 }
+
+/*fun manageFetchingDataStatus(lifecycleOwner: LifecycleOwner, binding: ActivityMainBinding) {
+    WorkManager.getInstance()
+        .getWorkInfosByTagLiveData("dataFetchin")
+        .observe(lifecycleOwner, { workInfo ->
+            for (info in workInfo) {
+                Log.i("info state", info.state.toString())
+
+                when (info.state) {
+                    WorkInfo.State.SUCCEEDED -> {
+                        binding.statusImage.visibility = View.GONE
+                    }
+                    WorkInfo.State.FAILED -> {
+                        binding.statusImage.visibility = View.VISIBLE
+                        binding.statusImage.setImageResource(R.drawable.error_img)
+                    }
+                    WorkInfo.State.RUNNING -> {
+                        binding.statusImage.visibility = View.VISIBLE
+                        binding.statusImage.setImageResource(R.drawable.loading_img)
+                    }
+                    else -> {
+                        binding.statusImage.visibility = View.GONE
+                    }
+                }
+            }
+        })
+}*/

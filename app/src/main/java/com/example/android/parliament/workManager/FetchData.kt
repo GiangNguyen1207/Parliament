@@ -1,7 +1,6 @@
 package com.example.android.parliament.workManager
 
 import android.content.Context
-import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.android.parliament.MyApp
@@ -15,24 +14,32 @@ class FetchDataWorker(context: Context, params: WorkerParameters) : CoroutineWor
     MyApp.appContext,
     params
 ) {
+
     companion object {
         const val WORK_NAME = "FetchData"
     }
 
-        override suspend fun doWork(): Result {
+    override suspend fun doWork(): Result {
         val appDao = AppDatabase.getDatabase().appDao()
         val repository = AppRepository(appDao)
 
-            /*fetch parliament members from the Internet, then change some properties
+        /*fetch parliament members from the Internet, then change some properties
         and insert directly to the database */
         try {
             val allMembers = repository.fetchAllMembers()
             for (member in allMembers) {
                 val mem = ParliamentMember(
-                    member.personNumber, member.seatNumber, member.last,
-                    member.first, member.party, MyApp.appContext.getString(getFinName(member.party)),
-                    MyApp.appContext.getString(getEngName(member.party)), member.minister,
-                    member.bornYear, member.constituency, member.picture
+                    member.personNumber,
+                    member.seatNumber,
+                    member.last,
+                    member.first,
+                    member.party,
+                    MyApp.appContext.getString(getFinName(member.party)),
+                    MyApp.appContext.getString(getEngName(member.party)),
+                    member.minister,
+                    member.bornYear,
+                    member.constituency,
+                    member.picture
                 )
                 repository.insertMember(mem)
             }

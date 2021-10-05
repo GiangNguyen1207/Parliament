@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/box.xml" value="0.2234375" />
+        <entry key="app/src/main/res/drawable/error_img.xml" value="0.3234375" />
         <entry key="app/src/main/res/drawable/ic_arrow_forward_blue.xml" value="0.32205128205128203" />
+        <entry key="app/src/main/res/drawable/loading_animation.xml" value="0.3234375" />
+        <entry key="app/src/main/res/drawable/loading_img.xml" value="0.3234375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/comment_row.xml" value="0.3109375" />
         <entry key="app/src/main/res/layout/fragment_all_comments.xml" value="0.19642857142857142" />
@@ -14,7 +17,7 @@
         <entry key="app/src/main/res/layout/fragment_new.xml" value="0.175" />
         <entry key="app/src/main/res/layout/fragment_party_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/member_row.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/party_row.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/party_row.xml" value="0.18" />
       </map>
     </option>
   </component>

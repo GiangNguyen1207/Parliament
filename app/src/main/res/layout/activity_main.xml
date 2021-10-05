@@ -20,5 +20,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/navigation" />
 
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="Fetch Data Status" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
