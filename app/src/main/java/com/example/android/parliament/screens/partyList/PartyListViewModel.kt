@@ -37,30 +37,7 @@ class PartyListViewModel : ViewModel() {
         val appDao = AppDatabase.getDatabase().appDao()
         repository = AppRepository(appDao)
         _allParties = repository.getAllParties()
-        fetchParliamentMembers()
-    }
-
-    /*fetch parliament members from the Internet, then change some properties
-    and insert directly to the database */
-    private fun fetchParliamentMembers() {
-        viewModelScope.launch {
-            try {
-                val allMembers = repository.fetchAllMembers()
-                for (member in allMembers) {
-                    val mem = ParliamentMember(
-                        member.personNumber, member.seatNumber, member.last,
-                        member.first, member.party, MyApp.appContext.getString(getFinName(member.party)),
-                        MyApp.appContext.getString(getEngName(member.party)), member.minister,
-                        member.bornYear, member.constituency, member.picture
-                    )
-                    repository.insertMember(mem)
-                    response.value = "Successfully"
-                }
-
-            } catch (error: Exception) {
-                response.value = "Failure + ${error.message}"
-            }
-        }
+        //fetchParliamentMembers()
     }
 
     /*when user clicks a party, this function will be triggered,
@@ -73,35 +50,5 @@ class PartyListViewModel : ViewModel() {
     //call right after navigating to the Member List Fragment to avoid infinite loop
     fun doneNavigating() {
         _navigation.value = null
-    }
-
-    //get the Finnish name of the party to put in the database table column
-    private fun getFinName(partyName: String): Int {
-        return when (partyName) {
-            "ps" -> R.string.ps
-            "sd" -> R.string.sd
-            "vihr" -> R.string.vihr
-            "kok" -> R.string.kok
-            "r" -> R.string.r
-            "kd" -> R.string.kd
-            "vas" -> R.string.vas
-            "liik" -> R.string.liik
-            else -> R.string.kesk
-        }
-    }
-
-    //get the English name of the party to put in the database table column
-    private fun getEngName(partyName: String): Int {
-        return when (partyName) {
-            "ps" -> R.string.ps_eng
-            "sd" -> R.string.sd_eng
-            "vihr" -> R.string.vihr_eng
-            "kok" -> R.string.kok_eng
-            "r" -> R.string.r_eng
-            "kd" -> R.string.kd_eng
-            "vas" -> R.string.vas_eng
-            "liik" -> R.string.liik_eng
-            else -> R.string.kesk_eng
-        }
     }
 }

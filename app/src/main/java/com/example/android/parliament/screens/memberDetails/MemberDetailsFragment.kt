@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.android.parliament.R
 import com.example.android.parliament.databinding.FragmentMemberDetailsBinding
 import java.util.*
@@ -38,7 +40,7 @@ class MemberDetailsFragment : Fragment() {
 
         memberDetailsViewModel.getMemberDetails(args.personNumber)
         memberDetailsViewModel.getMemberRate(args.personNumber)
-        //memberDetailsViewModel.getMemberComments(personNumber)
+        memberDetailsViewModel.getMemberPicture(args.personNumber)
 
         memberDetailsViewModel.memberDetails.observe(viewLifecycleOwner, { member ->
             binding.member = member
@@ -65,21 +67,22 @@ class MemberDetailsFragment : Fragment() {
             binding.averageRate.text = getString(R.string.average_rate, rate)
         })
 
-        /*memberDetailsViewModel.allComments.observe(viewLifecycleOwner, { comments ->
-            Log.i("all comments", comments.toString())
-            //manage to add comments
-            if (comments.size >= 2) {
-                binding.firstComment.visibility = View.VISIBLE
-                binding.secondComment.visibility = View.VISIBLE
-                binding.firstComment.text = comments[comments.size - 2]
-                binding.secondComment.text = comments[comments.size - 1]
-            }
-        })*/
+        memberDetailsViewModel.memberPicturePath.observe(viewLifecycleOwner, { path ->
+            Glide
+                .with(this)
+                .load("https://avoindata.eduskunta.fi/$path")
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(binding.memberImage)
+        })
 
-        memberDetailsViewModel.isNavigatedd.observe(viewLifecycleOwner, { isNavigated ->
+        memberDetailsViewModel.isNavigated.observe(viewLifecycleOwner, { isNavigated ->
             if (isNavigated) {
                 this.findNavController()
-                    .navigate(MemberDetailsFragmentDirections.actionMemberDetailsFragmentToAllCommentsFragment(args.personNumber))
+                    .navigate(
+                        MemberDetailsFragmentDirections.actionMemberDetailsFragmentToAllCommentsFragment(
+                            args.personNumber
+                        )
+                    )
                 memberDetailsViewModel.doneNavigating()
             }
         })

@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/member_image"
             android:layout_width="150dp"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/small"
             android:contentDescription="@string/member_image"
@@ -84,17 +84,35 @@
             app:layout_constraintTop_toBottomOf="@+id/age" />
 
         <TextView
+            android:id="@+id/see_all_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginEnd="@dimen/small"
+            android:drawablePadding="@dimen/padding"
+            android:gravity="end"
+            android:text="@string/see_all_comments"
+            android:textColor="#03A9F4"
+            app:drawableEndCompat="@drawable/ic_arrow_forward_blue"
+            app:layout_constraintBottom_toTopOf="@+id/average_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/member_image" />
+
+        <TextView
             android:id="@+id/average_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
             android:layout_marginTop="@dimen/medium"
+            android:layout_marginStart="@dimen/small"
             android:text="@string/rating"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/grading_bar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/member_image" />
+            app:layout_constraintTop_toBottomOf="@+id/see_all_comments" />
 
         <TextView
             android:id="@+id/average_rate"
@@ -108,58 +126,17 @@
             app:layout_constraintStart_toEndOf="@+id/average_title"
             app:layout_constraintTop_toTopOf="@+id/average_title" />
 
+
         <RatingBar
             android:id="@+id/grading_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
             android:layout_marginTop="@dimen/small"
+            android:layout_marginStart="@dimen/small"
             android:stepSize="0.5"
-            app:layout_constraintBottom_toTopOf="@+id/first_comment"
+            app:layout_constraintBottom_toTopOf="@+id/comment_edit_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/average_title" />
-
-        <TextView
-            android:id="@+id/first_comment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginTop="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/second_comment"
-            app:layout_constraintTop_toBottomOf="@+id/grading_bar"
-            app:layout_constraintVertical_bias="0.47"
-            tools:layout_editor_absoluteX="0dp" />
-
-        <TextView
-            android:id="@+id/second_comment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginTop="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/see_all_comments"
-            app:layout_constraintTop_toBottomOf="@+id/first_comment"
-            tools:layout_editor_absoluteX="16dp" />
-
-        <TextView
-            android:id="@+id/see_all_comments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginTop="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:drawablePadding="@dimen/padding"
-            android:gravity="end"
-            android:text="@string/see_all_comments"
-            android:textColor="#03A9F4"
-            app:layout_constraintBottom_toTopOf="@+id/comment_edit_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/second_comment"
-            app:drawableEndCompat="@drawable/ic_arrow_forward_blue" />
 
         <EditText
             android:id="@+id/comment_edit_text"
@@ -178,7 +155,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/see_all_comments" />
+            app:layout_constraintTop_toBottomOf="@+id/grading_bar" />
 
         <Button
             android:id="@+id/btn_submit"

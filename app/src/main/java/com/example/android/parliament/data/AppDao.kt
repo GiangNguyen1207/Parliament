@@ -38,6 +38,9 @@ interface AppDao {
     @Query("SELECT * from member_comment_table WHERE personNumber = :personNumber")
     fun getMemberComments(personNumber: Int): LiveData<List<Comment>>
 
+    @Query("SELECT picture from parliament_member_table WHERE personNumber = :personNumber")
+    fun getMemberPicturePath(personNumber: Int): LiveData<String>
+
     //@Insert
     //suspend fun insertGrade(ratingComment: RatingComment)
 

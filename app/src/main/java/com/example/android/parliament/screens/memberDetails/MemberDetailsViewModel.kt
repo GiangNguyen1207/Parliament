@@ -13,8 +13,8 @@ class MemberDetailsViewModel : ViewModel() {
     private val _isClicked = MutableLiveData<Boolean>()
     private lateinit var _rates: LiveData<List<Double>>
     private val _averageRate = MutableLiveData<Double>()
-    private lateinit var _allComments: LiveData<List<String>>
     private val _isNavigated = MutableLiveData<Boolean>()
+    private lateinit var _memberPicturePath: LiveData<String>
 
     val memberDetails: LiveData<ParliamentMember>
         get() = _memberDetails
@@ -28,11 +28,11 @@ class MemberDetailsViewModel : ViewModel() {
     val averageRate: LiveData<Double>
         get() = _averageRate
 
-    val allComments: LiveData<List<String>>
-        get() = _allComments
-
-    val isNavigatedd: LiveData<Boolean>
+    val isNavigated: LiveData<Boolean>
         get() = _isNavigated
+
+    val memberPicturePath: LiveData<String>
+        get() = _memberPicturePath
 
     init {
         val appDao = AppDatabase.getDatabase().appDao()
@@ -71,10 +71,6 @@ class MemberDetailsViewModel : ViewModel() {
         _rates = repository.getMemberRate(personNumber)
     }
 
-    /*fun getMemberComments(personNumber: Int) {
-        _allComments = repository.getMemberComments(personNumber)
-    }*/
-
     fun calculateAverageRate(rates: List<Double>) {
         if (rates.isNotEmpty()) {
             _averageRate.value = rates.average()
@@ -87,5 +83,9 @@ class MemberDetailsViewModel : ViewModel() {
 
     fun doneNavigating() {
         _isNavigated.value = false
+    }
+
+    fun getMemberPicture(personNumber: Int) {
+        _memberPicturePath = repository.getMemberPicturePath(personNumber)
     }
 }
