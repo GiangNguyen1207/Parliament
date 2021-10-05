@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="party"
             type="com.example.android.parliament.data.Party" />
+
         <variable
             name="clickListener"
             type="com.example.android.parliament.screens.partyList.PartyListener" />
@@ -15,35 +16,46 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/small"
-        android:onClick="@{() -> clickListener.onClick(party.party)}">
+        android:onClick="@{() -> clickListener.onClick(party.party)}"
+        android:paddingBottom="@dimen/medium">
 
         <ImageView
             android:id="@+id/party_image"
             android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
+            android:padding="@dimen/small"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="0.0"
+            android:background="@drawable/box"
+            app:srcCompat="@drawable/ic_launcher_background"
+            android:contentDescription="@string/party_image" />
 
         <TextView
             android:id="@+id/fin_party_name"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:gravity="center|bottom"
             android:text="@{party.partyInFin}"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/party_image" />
+            app:layout_constraintTop_toBottomOf="@+id/party_image"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/eng_party_name"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@{party.partyInEng}"
             android:textSize="14sp"
+            android:paddingTop="@dimen/padding"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fin_party_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>

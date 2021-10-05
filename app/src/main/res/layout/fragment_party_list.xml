@@ -21,10 +21,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/partyListRv"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginStart="@dimen/small"
             android:layout_marginEnd="@dimen/small"
-            android:paddingTop="@dimen/medium"
+            android:layout_marginTop="@dimen/small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
