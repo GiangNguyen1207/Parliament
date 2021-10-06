@@ -40,12 +40,4 @@ interface AppDao {
 
     @Query("SELECT picture from parliament_member_table WHERE personNumber = :personNumber")
     fun getMemberPicturePath(personNumber: Int): LiveData<String>
-
-    //@Insert
-    //suspend fun insertGrade(ratingComment: RatingComment)
-
-    /*@Query("SELECT grade FROM member_grade_table WHERE personNumber = :personNumber")
-    fun getMemberGrade(personNumber: Int): LiveData<Grade>*/
-
-    //@Query("SELECT * FROM parliament_member_table WHERE party = 'kesk' ")
 }

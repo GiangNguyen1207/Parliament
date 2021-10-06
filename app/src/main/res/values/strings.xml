@@ -6,7 +6,7 @@
     <string name="age">Age: %1$d</string>
     <string name="constituency">Constituency: %s</string>
     <string name="random">Random</string>
-    <string name="title">Title: %s</string>
+    <string name="title">%s</string>
     <string name="sd_eng">Social Democratic Party</string>
     <string name="ps_eng">Finns Party</string>
     <string name="kok_eng">National Coalition Party</string>

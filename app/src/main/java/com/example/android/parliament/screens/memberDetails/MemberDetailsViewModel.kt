@@ -7,14 +7,20 @@ import androidx.lifecycle.viewModelScope
 import com.example.android.parliament.data.*
 import kotlinx.coroutines.launch
 
-class MemberDetailsViewModel : ViewModel() {
-    private val repository: AppRepository
-    private lateinit var _memberDetails: LiveData<ParliamentMember>
+class MemberDetailsViewModel(private val personNumber: Int) : ViewModel() {
+    private val repository: AppRepository = AppRepository(AppDatabase.getDatabase().appDao())
+
+    private var _memberDetails: LiveData<ParliamentMember> =
+        repository.getMemberDetails(personNumber)
+
+    private var _memberPicturePath: LiveData<String> =
+        repository.getMemberPicturePath(personNumber)
+
+    private var _rates: LiveData<List<Double>> = repository.getMemberRate(personNumber)
+
     private val _isClicked = MutableLiveData<Boolean>()
-    private lateinit var _rates: LiveData<List<Double>>
     private val _averageRate = MutableLiveData<Double>()
     private val _isNavigated = MutableLiveData<Boolean>()
-    private lateinit var _memberPicturePath: LiveData<String>
 
     val memberDetails: LiveData<ParliamentMember>
         get() = _memberDetails
@@ -34,14 +40,6 @@ class MemberDetailsViewModel : ViewModel() {
     val memberPicturePath: LiveData<String>
         get() = _memberPicturePath
 
-    init {
-        val appDao = AppDatabase.getDatabase().appDao()
-        repository = AppRepository(appDao)
-    }
-
-    fun getMemberDetails(personNumber: Int) {
-        _memberDetails = repository.getMemberDetails(personNumber)
-    }
 
     fun onButtonClick() {
         _isClicked.value = true
@@ -67,9 +65,6 @@ class MemberDetailsViewModel : ViewModel() {
         }
     }
 
-    fun getMemberRate(personNumber: Int) {
-        _rates = repository.getMemberRate(personNumber)
-    }
 
     fun calculateAverageRate(rates: List<Double>) {
         if (rates.isNotEmpty()) {
@@ -83,9 +78,5 @@ class MemberDetailsViewModel : ViewModel() {
 
     fun doneNavigating() {
         _isNavigated.value = false
-    }
-
-    fun getMemberPicture(personNumber: Int) {
-        _memberPicturePath = repository.getMemberPicturePath(personNumber)
     }
 }

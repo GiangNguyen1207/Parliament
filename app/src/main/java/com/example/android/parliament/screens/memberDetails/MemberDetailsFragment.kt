@@ -17,6 +17,7 @@ import com.example.android.parliament.databinding.FragmentMemberDetailsBinding
 import java.util.*
 
 class MemberDetailsFragment : Fragment() {
+    private lateinit var memberDetailsVmFactory: MemberDetailsVmFactory
     private lateinit var memberDetailsViewModel: MemberDetailsViewModel
     private val currentYear = Calendar.getInstance().get(Calendar.YEAR)
     private val args: MemberDetailsFragmentArgs by navArgs()
@@ -32,15 +33,14 @@ class MemberDetailsFragment : Fragment() {
         )
 
         binding.lifecycleOwner = this
+
         binding.btnSubmit.setOnClickListener { memberDetailsViewModel.onButtonClick() }
         binding.seeAllComments.setOnClickListener { memberDetailsViewModel.navigateToAllComments() }
 
-        memberDetailsViewModel = ViewModelProvider(this)
+        memberDetailsVmFactory = MemberDetailsVmFactory(args.personNumber)
+        memberDetailsViewModel = ViewModelProvider(this, memberDetailsVmFactory)
             .get(MemberDetailsViewModel::class.java)
 
-        memberDetailsViewModel.getMemberDetails(args.personNumber)
-        memberDetailsViewModel.getMemberRate(args.personNumber)
-        memberDetailsViewModel.getMemberPicture(args.personNumber)
 
         memberDetailsViewModel.memberDetails.observe(viewLifecycleOwner, { member ->
             binding.member = member
@@ -71,6 +71,7 @@ class MemberDetailsFragment : Fragment() {
             Glide
                 .with(this)
                 .load("https://avoindata.eduskunta.fi/$path")
+                .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.memberImage)
         })
