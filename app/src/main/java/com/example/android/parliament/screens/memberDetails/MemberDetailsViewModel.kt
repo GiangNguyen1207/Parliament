@@ -13,9 +13,6 @@ class MemberDetailsViewModel(private val personNumber: Int) : ViewModel() {
     private var _memberDetails: LiveData<ParliamentMember> =
         repository.getMemberDetails(personNumber)
 
-    private var _memberPicturePath: LiveData<String> =
-        repository.getMemberPicturePath(personNumber)
-
     private var _rates: LiveData<List<Double>> = repository.getMemberRate(personNumber)
 
     private val _isClicked = MutableLiveData<Boolean>()
@@ -25,21 +22,17 @@ class MemberDetailsViewModel(private val personNumber: Int) : ViewModel() {
     val memberDetails: LiveData<ParliamentMember>
         get() = _memberDetails
 
-    val isClicked: LiveData<Boolean>
-        get() = _isClicked
-
     val rates: LiveData<List<Double>>
         get() = _rates
+
+    val isClicked: LiveData<Boolean>
+        get() = _isClicked
 
     val averageRate: LiveData<Double>
         get() = _averageRate
 
     val isNavigated: LiveData<Boolean>
         get() = _isNavigated
-
-    val memberPicturePath: LiveData<String>
-        get() = _memberPicturePath
-
 
     fun onButtonClick() {
         _isClicked.value = true

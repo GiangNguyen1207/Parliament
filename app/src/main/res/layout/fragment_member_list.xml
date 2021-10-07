@@ -10,14 +10,12 @@
         android:orientation="vertical"
         tools:context=".screens.MemberList">
 
-        <TextView
-            android:id="@+id/title"
-            style="@style/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:text="@string/member_list"
+        <ImageView
+            android:id="@+id/party_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/small"
+            style="@style/marginLeftRight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,15 +24,13 @@
             android:id="@+id/memberListRv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/small"
+            style="@style/marginLeftRight"
             android:layout_marginTop="@dimen/big"
-            android:layout_marginEnd="@dimen/small"
-
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/party_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

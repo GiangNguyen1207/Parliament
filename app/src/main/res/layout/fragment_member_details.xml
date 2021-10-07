@@ -14,6 +14,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small"
+            android:text="@{@string/name(member.first, member.last)}"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
         <ImageView
             android:id="@+id/member_image"
             android:layout_width="160dp"
@@ -22,31 +37,12 @@
             android:layout_marginStart="@dimen/small"
             android:contentDescription="@string/member_image"
             android:src="@drawable/ic_launcher_background"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/name"
             tools:src="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginTop="@dimen/margin_text"
-            android:layout_marginEnd="@dimen/small"
-            android:text="@{@string/name(member.first, member.last)}"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/member_image"
-            app:layout_constraintTop_toTopOf="@+id/member_image"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
             android:id="@+id/title"
-            style="@style/member_details_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small"
@@ -54,13 +50,12 @@
             android:text="@{@string/title(member.minister ? @string/minister : @string/member_of_parliament)}"
             app:layout_constraintBottom_toTopOf="@+id/age"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/member_image"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintTop_toTopOf="@+id/member_image" />
 
         <TextView
             android:id="@+id/age"
-            style="@style/member_details_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small"
@@ -68,18 +63,15 @@
             android:text="@string/age"
             app:layout_constraintBottom_toTopOf="@+id/constituency"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/member_image"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <TextView
             android:id="@+id/constituency"
-            style="@style/member_details_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small"
             android:layout_marginEnd="@dimen/small"
-            android:layout_marginBottom="@dimen/margin_text"
             android:text="@{@string/constituency(member.constituency)}"
             app:layout_constraintBottom_toBottomOf="@+id/member_image"
             app:layout_constraintEnd_toEndOf="parent"
@@ -90,25 +82,20 @@
             android:id="@+id/see_all_comments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
             android:drawablePadding="@dimen/padding"
             android:gravity="end"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginEnd="@dimen/small"
             android:text="@string/see_all_comments"
             android:textColor="#03A9F4"
             app:drawableEndCompat="@drawable/ic_arrow_forward_blue"
-            app:layout_constraintBottom_toTopOf="@+id/average_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/member_image" />
+            app:layout_constraintTop_toBottomOf="@+id/member_image"
+            tools:layout_editor_absoluteX="0dp" />
 
         <TextView
             android:id="@+id/average_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium"
             android:layout_marginStart="@dimen/small"
             android:text="@string/rating"
             android:textSize="18sp"
@@ -129,12 +116,10 @@
             app:layout_constraintStart_toEndOf="@+id/average_title"
             app:layout_constraintTop_toTopOf="@+id/average_title" />
 
-
         <RatingBar
             android:id="@+id/grading_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small"
             android:layout_marginStart="@dimen/small"
             android:stepSize="0.5"
             app:layout_constraintBottom_toTopOf="@+id/comment_edit_text"
@@ -145,7 +130,6 @@
             android:id="@+id/comment_edit_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small"
             android:layout_marginStart="@dimen/small"
             android:layout_marginEnd="@dimen/small"
             android:background="@drawable/box"
@@ -164,7 +148,6 @@
             android:id="@+id/btn_submit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small"
             android:layout_marginStart="@dimen/small"
             android:layout_marginEnd="@dimen/small"
             android:text="@string/submit"
@@ -174,8 +157,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/comment_edit_text" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

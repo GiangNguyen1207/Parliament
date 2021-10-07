@@ -18,7 +18,10 @@
         android:layout_height="wrap_content"
         android:onClick="@{() -> clickListener.onClick(party.party)}"
         android:background="@drawable/box"
-        android:paddingBottom="@dimen/medium">
+        android:paddingBottom="@dimen/small"
+        android:layout_marginStart="@dimen/padding_small"
+        android:layout_marginEnd="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/small">
 
         <ImageView
             android:id="@+id/party_image"

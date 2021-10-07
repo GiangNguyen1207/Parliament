@@ -33,7 +33,6 @@ class MemberDetailsFragment : Fragment() {
         )
 
         binding.lifecycleOwner = this
-
         binding.btnSubmit.setOnClickListener { memberDetailsViewModel.onButtonClick() }
         binding.seeAllComments.setOnClickListener { memberDetailsViewModel.navigateToAllComments() }
 
@@ -45,6 +44,12 @@ class MemberDetailsFragment : Fragment() {
         memberDetailsViewModel.memberDetails.observe(viewLifecycleOwner, { member ->
             binding.member = member
             binding.age.text = getString(R.string.age, currentYear - member.bornYear)
+            Glide
+                .with(this)
+                .load("https://avoindata.eduskunta.fi/${member.picture}")
+                .circleCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(binding.memberImage)
         })
 
         memberDetailsViewModel.isClicked.observe(viewLifecycleOwner, { click ->
@@ -65,15 +70,6 @@ class MemberDetailsFragment : Fragment() {
 
         memberDetailsViewModel.averageRate.observe(viewLifecycleOwner, { rate ->
             binding.averageRate.text = getString(R.string.average_rate, rate)
-        })
-
-        memberDetailsViewModel.memberPicturePath.observe(viewLifecycleOwner, { path ->
-            Glide
-                .with(this)
-                .load("https://avoindata.eduskunta.fi/$path")
-                .circleCrop()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(binding.memberImage)
         })
 
         memberDetailsViewModel.isNavigated.observe(viewLifecycleOwner, { isNavigated ->
