@@ -16,35 +16,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> clickListener.onClick(party.party)}"
-        android:background="@drawable/box"
-        android:paddingBottom="@dimen/small"
         android:layout_marginStart="@dimen/padding_small"
         android:layout_marginEnd="@dimen/padding_small"
-        android:layout_marginBottom="@dimen/small">
+        android:layout_marginBottom="@dimen/small"
+        android:background="@drawable/box"
+        android:onClick="@{() -> clickListener.onClick(party.party)}"
+        android:paddingBottom="@dimen/small">
 
         <ImageView
             android:id="@+id/party_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:contentDescription="@string/party_image"
             android:padding="@dimen/small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background"
-            android:contentDescription="@string/party_image" />
+            app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/fin_party_name"
+            style="@style/subTitle"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:gravity="center|bottom"
-            android:text="@{party.partyInFin}"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:padding="@dimen/small"
+            android:text="@{party.partyInFin}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,12 +52,12 @@
 
         <TextView
             android:id="@+id/eng_party_name"
+            style="@style/text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding"
             android:text="@{party.partyInEng}"
-            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fin_party_name" />

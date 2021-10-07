@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/box.xml" value="0.2234375" />
+        <entry key="app/src/main/res/drawable/box_dark_blue.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/drawable/error_img.xml" value="0.3234375" />
         <entry key="app/src/main/res/drawable/ic_arrow_forward.xml" value="0.34010416666666665" />
         <entry key="app/src/main/res/drawable/ic_arrow_forward_blue.xml" value="0.32205128205128203" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/drawable/loading_animation.xml" value="0.3234375" />
         <entry key="app/src/main/res/drawable/loading_img.xml" value="0.3234375" />
         <entry key="app/src/main/res/drawable/party_box.xml" value="0.34010416666666665" />

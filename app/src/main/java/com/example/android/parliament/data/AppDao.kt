@@ -38,6 +38,6 @@ interface AppDao {
     @Query("SELECT * from member_comment_table WHERE personNumber = :personNumber")
     fun getMemberComments(personNumber: Int): LiveData<List<Comment>>
 
-    @Query("SELECT picture from parliament_member_table WHERE personNumber = :personNumber")
-    fun getMemberPicturePath(personNumber: Int): LiveData<String>
+    @Query("SELECT * from member_comment_table WHERE personNumber = :personNumber ORDER BY id DESC LIMIT 1")
+    fun getLatestComment(personNumber: Int): LiveData<Comment>
 }

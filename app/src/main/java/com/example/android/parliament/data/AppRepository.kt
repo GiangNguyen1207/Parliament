@@ -27,10 +27,5 @@ class AppRepository(private val appDao: AppDao) {
 
     fun getMemberComments(personNumber: Int): LiveData<List<Comment>> = appDao.getMemberComments(personNumber)
 
-    fun getMemberPicturePath(personNumber: Int): LiveData<String> = appDao.getMemberPicturePath(personNumber)
-
-
-    //suspend fun insertGrade(ratingComment: RatingComment) = appDao.insertGrade(ratingComment)
-
-    //fun getMemberGrade(personNumber: Int): LiveData<Grade> = appDao.getMemberGrade(personNumber)
+    fun getLatestComment(personNumber: Int): LiveData<Comment> = appDao.getLatestComment(personNumber)
 }

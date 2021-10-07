@@ -14,6 +14,7 @@ class MemberDetailsViewModel(private val personNumber: Int) : ViewModel() {
         repository.getMemberDetails(personNumber)
 
     private var _rates: LiveData<List<Double>> = repository.getMemberRate(personNumber)
+    private var _latestComment: LiveData<Comment> = repository.getLatestComment(personNumber)
 
     private val _isClicked = MutableLiveData<Boolean>()
     private val _averageRate = MutableLiveData<Double>()
@@ -24,6 +25,9 @@ class MemberDetailsViewModel(private val personNumber: Int) : ViewModel() {
 
     val rates: LiveData<List<Double>>
         get() = _rates
+
+    val latestComment: LiveData<Comment>
+        get() = _latestComment
 
     val isClicked: LiveData<Boolean>
         get() = _isClicked

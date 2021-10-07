@@ -33,7 +33,10 @@ class MemberDetailsFragment : Fragment() {
         )
 
         binding.lifecycleOwner = this
-        binding.btnSubmit.setOnClickListener { memberDetailsViewModel.onButtonClick() }
+        binding.btnSubmit.setOnClickListener {
+            memberDetailsViewModel.onButtonClick()
+            binding.commentEditText.text = null
+        }
         binding.seeAllComments.setOnClickListener { memberDetailsViewModel.navigateToAllComments() }
 
         memberDetailsVmFactory = MemberDetailsVmFactory(args.personNumber)
@@ -70,6 +73,14 @@ class MemberDetailsFragment : Fragment() {
 
         memberDetailsViewModel.averageRate.observe(viewLifecycleOwner, { rate ->
             binding.averageRate.text = getString(R.string.average_rate, rate)
+        })
+
+        memberDetailsViewModel.latestComment.observe(viewLifecycleOwner, { comment ->
+            if (comment != null) {
+                binding.commentSv.visibility = View.VISIBLE
+                binding.dateTime.text = comment.dateTime
+                binding.latestComment.text = comment.comment
+            }
         })
 
         memberDetailsViewModel.isNavigated.observe(viewLifecycleOwner, { isNavigated ->

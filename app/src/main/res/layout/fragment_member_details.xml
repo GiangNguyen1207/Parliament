@@ -10,153 +10,196 @@
             type="com.example.android.parliament.data.ParliamentMember" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small"
-            android:text="@{@string/name(member.first, member.last)}"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/member_image"
-            android:layout_width="160dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/small"
-            android:contentDescription="@string/member_image"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name"
-            tools:src="@drawable/ic_launcher_background" />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:text="@{@string/title(member.minister ? @string/minister : @string/member_of_parliament)}"
-            app:layout_constraintBottom_toTopOf="@+id/age"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/member_image"
-            app:layout_constraintTop_toTopOf="@+id/member_image" />
-
-        <TextView
-            android:id="@+id/age"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:text="@string/age"
-            app:layout_constraintBottom_toTopOf="@+id/constituency"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/member_image"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
-
-        <TextView
-            android:id="@+id/constituency"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:text="@{@string/constituency(member.constituency)}"
-            app:layout_constraintBottom_toBottomOf="@+id/member_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/member_image"
-            app:layout_constraintTop_toBottomOf="@+id/age" />
-
-        <TextView
-            android:id="@+id/see_all_comments"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/padding"
-            android:gravity="end"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:text="@string/see_all_comments"
-            android:textColor="#03A9F4"
-            app:drawableEndCompat="@drawable/ic_arrow_forward_blue"
-            app:layout_constraintTop_toBottomOf="@+id/member_image"
-            tools:layout_editor_absoluteX="0dp" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/average_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:text="@string/rating"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/grading_bar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/see_all_comments" />
+            <TextView
+                android:id="@+id/name"
+                style="@style/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small"
+                android:text="@{@string/name(member.first, member.last)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/average_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:text="@string/average_rate"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/average_title"
-            app:layout_constraintStart_toEndOf="@+id/average_title"
-            app:layout_constraintTop_toTopOf="@+id/average_title" />
+            <ImageView
+                android:id="@+id/member_image"
+                android:layout_width="160dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/small"
+                android:contentDescription="@string/member_image"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:src="@drawable/ic_launcher_background" />
 
-        <RatingBar
-            android:id="@+id/grading_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:stepSize="0.5"
-            app:layout_constraintBottom_toTopOf="@+id/comment_edit_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/average_title" />
+            <TextView
+                android:id="@+id/title"
+                style="@style/text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small"
+                android:layout_marginEnd="@dimen/small"
+                android:text="@{@string/title(member.minister ? @string/minister : @string/member_of_parliament)}"
+                app:layout_constraintBottom_toTopOf="@+id/age"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/member_image"
+                app:layout_constraintTop_toTopOf="@+id/member_image" />
 
-        <EditText
-            android:id="@+id/comment_edit_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:background="@drawable/box"
-            android:gravity="top"
-            android:hint="@string/comment"
-            android:inputType="textMultiLine"
-            android:lines="2"
-            android:padding="@dimen/small"
-            app:layout_constraintBottom_toTopOf="@+id/btn_submit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/grading_bar" />
+            <TextView
+                android:id="@+id/age"
+                style="@style/text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small"
+                android:layout_marginEnd="@dimen/small"
+                android:text="@string/age"
+                app:layout_constraintBottom_toTopOf="@+id/constituency"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/member_image"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
-        <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:text="@string/submit"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/comment_edit_text" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/constituency"
+                style="@style/text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small"
+                android:layout_marginEnd="@dimen/small"
+                android:text="@{@string/constituency(member.constituency)}"
+                app:layout_constraintBottom_toBottomOf="@+id/member_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/member_image"
+                app:layout_constraintTop_toBottomOf="@+id/age" />
 
+            <ScrollView
+                android:id="@+id/comment_sv"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/small"
+                android:visibility="gone"
+                android:nestedScrollingEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/member_image">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/date_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/latest_comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <TextView
+                android:id="@+id/see_all_comments"
+                style="@style/marginLeftRight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small"
+                android:drawablePadding="@dimen/padding"
+                android:gravity="end"
+                android:text="@string/see_all_comments"
+                android:textColor="#003f9a"
+                app:drawableEndCompat="@drawable/ic_arrow_forward_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comment_sv" />
+
+            <TextView
+                android:id="@+id/average_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small"
+                android:layout_marginTop="@dimen/small"
+                android:text="@string/rating"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/grading_bar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/see_all_comments" />
+
+            <TextView
+                android:id="@+id/average_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small"
+                android:text="@string/average_rate"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/average_title"
+                app:layout_constraintStart_toEndOf="@+id/average_title"
+                app:layout_constraintTop_toTopOf="@+id/average_title" />
+
+            <RatingBar
+                android:id="@+id/grading_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small"
+                android:layout_marginTop="@dimen/small"
+                android:stepSize="0.5"
+                app:layout_constraintBottom_toTopOf="@+id/comment_edit_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/average_title" />
+
+            <EditText
+                android:id="@+id/comment_edit_text"
+                style="@style/marginLeftRight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small"
+                android:background="@drawable/box"
+                android:gravity="top"
+                android:hint="@string/comment"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:padding="@dimen/small"
+                app:layout_constraintBottom_toTopOf="@+id/btn_submit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/grading_bar" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                style="@style/marginLeftRight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small"
+                android:layout_marginBottom="@dimen/small"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comment_edit_text" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

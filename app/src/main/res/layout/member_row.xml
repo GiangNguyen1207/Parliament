@@ -14,19 +14,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/medium"
+        android:layout_marginBottom="@dimen/medium"
+        android:background="@drawable/box_dark_blue"
         android:onClick="@{() -> clickListener.onClick(member.personNumber)}">
 
         <TextView
             android:id="@+id/member_name"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:background="@drawable/box"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/small"
+            android:paddingStart="@dimen/small"
             android:text="@{@string/member_full_name(member.first, member.last)}"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            style="@style/subTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
