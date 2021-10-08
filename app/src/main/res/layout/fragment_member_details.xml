@@ -87,7 +87,7 @@
             <ScrollView
                 android:id="@+id/comment_sv"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/small"
                 android:visibility="gone"
                 android:nestedScrollingEnabled="true"

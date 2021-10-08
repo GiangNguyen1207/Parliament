@@ -14,6 +14,7 @@ import com.example.android.parliament.databinding.FragmentMemberListBinding
 
 class MemberListFragment : Fragment() {
     private lateinit var memberListViewModel: MemberListViewModel
+    private lateinit var memberListVmFactory: MemberListVmFactory
     private val args: MemberListFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -32,10 +33,9 @@ class MemberListFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.memberListRv.adapter = memberListAdapter
 
-        memberListViewModel = ViewModelProvider(this).get(MemberListViewModel::class.java)
-
-        memberListViewModel.getPartyFinName(args.party)
-        memberListViewModel.readMemberList(args.party)
+        memberListVmFactory = MemberListVmFactory(args.party)
+        memberListViewModel =
+            ViewModelProvider(this, memberListVmFactory).get(MemberListViewModel::class.java)
 
         binding.partyImage.setImageResource(
             when (args.party) {
