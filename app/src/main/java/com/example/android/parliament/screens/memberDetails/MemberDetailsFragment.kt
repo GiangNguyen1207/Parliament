@@ -19,7 +19,7 @@ import java.util.*
 class MemberDetailsFragment : Fragment() {
     private lateinit var memberDetailsVmFactory: MemberDetailsVmFactory
     private lateinit var memberDetailsViewModel: MemberDetailsViewModel
-    private val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+
     private val args: MemberDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -32,29 +32,20 @@ class MemberDetailsFragment : Fragment() {
             R.layout.fragment_member_details, container, false
         )
 
+        memberDetailsVmFactory = MemberDetailsVmFactory(args.personNumber)
+        memberDetailsViewModel = ViewModelProvider(this, memberDetailsVmFactory)
+            .get(MemberDetailsViewModel::class.java)
+
         binding.lifecycleOwner = this
         binding.btnSubmit.setOnClickListener {
             memberDetailsViewModel.onButtonClick()
             binding.commentEditText.text = null
         }
         binding.seeAllComments.setOnClickListener { memberDetailsViewModel.navigateToAllComments() }
-
-        memberDetailsVmFactory = MemberDetailsVmFactory(args.personNumber)
-        memberDetailsViewModel = ViewModelProvider(this, memberDetailsVmFactory)
-            .get(MemberDetailsViewModel::class.java)
+        binding.memberDetailsViewModel = memberDetailsViewModel
 
 
-        memberDetailsViewModel.memberDetails.observe(viewLifecycleOwner, { member ->
-            binding.member = member
-            binding.age.text = getString(R.string.age, currentYear - member.bornYear)
-            Glide
-                .with(this)
-                .load("https://avoindata.eduskunta.fi/${member.picture}")
-                .circleCrop()
-                .placeholder(R.drawable.loading_animation)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(binding.memberImage)
-        })
+        memberDetailsViewModel.memberDetails.observe(viewLifecycleOwner, {})
 
         memberDetailsViewModel.isClicked.observe(viewLifecycleOwner, { click ->
             if (click) {

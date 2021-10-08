@@ -31,25 +31,12 @@ class MemberListFragment : Fragment() {
         })
 
         binding.lifecycleOwner = this
+        binding.party = args.party
         binding.memberListRv.adapter = memberListAdapter
 
         memberListVmFactory = MemberListVmFactory(args.party)
         memberListViewModel =
             ViewModelProvider(this, memberListVmFactory).get(MemberListViewModel::class.java)
-
-        binding.partyImage.setImageResource(
-            when (args.party) {
-                "ps" -> R.drawable.ps_logo
-                "sd" -> R.drawable.sdp_logo
-                "vihr" -> R.drawable.vih_logo
-                "kok" -> R.drawable.kok_logo
-                "r" -> R.drawable.r_logo
-                "kd" -> R.drawable.kd_logo
-                "vas" -> R.drawable.vas_logo
-                "liik" -> R.drawable.liik_logo
-                else -> R.drawable.keskusta_logo
-            }
-        )
 
         memberListViewModel.memberList.observe(viewLifecycleOwner, {
             memberListAdapter.submitList(it)

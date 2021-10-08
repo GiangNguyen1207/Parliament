@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="member"
             type="com.example.android.parliament.data.ParliamentMember" />
+        <variable
+            name="memberDetailsViewModel"
+            type="com.example.android.parliament.screens.memberDetails.MemberDetailsViewModel" />
     </data>
 
     <ScrollView
@@ -17,7 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/name"
@@ -25,7 +27,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/small"
-                android:text="@{@string/name(member.first, member.last)}"
+                app:memberName="@{memberDetailsViewModel.memberDetails}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +41,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/small"
                 android:contentDescription="@string/member_image"
+
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name"
@@ -51,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small"
                 android:layout_marginEnd="@dimen/small"
-                android:text="@{@string/title(member.minister ? @string/minister : @string/member_of_parliament)}"
+                app:memberTitle="@{memberDetailsViewModel.memberDetails}"
                 app:layout_constraintBottom_toTopOf="@+id/age"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -65,9 +68,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small"
                 android:layout_marginEnd="@dimen/small"
-                android:text="@string/age"
+                app:memberAge="@{memberDetailsViewModel.memberDetails}"
                 app:layout_constraintBottom_toTopOf="@+id/constituency"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/member_image"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -78,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small"
                 android:layout_marginEnd="@dimen/small"
-                android:text="@{@string/constituency(member.constituency)}"
+                app:memberConstituency="@{memberDetailsViewModel.memberDetails}"
                 app:layout_constraintBottom_toBottomOf="@+id/member_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/member_image"

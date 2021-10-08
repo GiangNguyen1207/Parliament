@@ -19,19 +19,7 @@ class PartyListAdapter(private val clickListener: PartyListener) :
         fun bind(party: Party, clickListener: PartyListener) {
             binding.party = party
             binding.clickListener = clickListener
-            binding.partyImage.setImageResource(
-                when (party.party) {
-                    "ps" -> R.drawable.ps_logo
-                    "sd" -> R.drawable.sdp_logo
-                    "vihr" -> R.drawable.vih_logo
-                    "kok" -> R.drawable.kok_logo
-                    "r" -> R.drawable.r_logo
-                    "kd" -> R.drawable.kd_logo
-                    "vas" -> R.drawable.vas_logo
-                    "liik" -> R.drawable.liik_logo
-                    else -> R.drawable.keskusta_logo
-                }
-            )
+            binding.executePendingBindings()
         }
 
         companion object {
