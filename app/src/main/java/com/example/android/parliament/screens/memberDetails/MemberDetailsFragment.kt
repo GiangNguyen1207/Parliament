@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.android.parliament.MyApp
 import com.example.android.parliament.R
 import com.example.android.parliament.databinding.FragmentMemberDetailsBinding
 
@@ -38,16 +40,20 @@ class MemberDetailsFragment : Fragment() {
         binding.seeAllComments.setOnClickListener { memberDetailsViewModel.navigateToAllComments() }
 
         binding.btnSubmit.setOnClickListener {
-            memberDetailsViewModel.addRatingComment(
-                args.personNumber,
-                binding.gradingBar.rating,
-                binding.commentEditText.text.toString()
-            )
+            if (binding.gradingBar.rating == 0F) {
+                val dialog = CustomDialogFragment()
+                dialog.show(parentFragmentManager, "custom dialog")
 
-            Toast.makeText(context, "Rated Successfully", Toast.LENGTH_SHORT).show()
+                setFragmentResultListener("onBtnPositiveClick") { _, bundle ->
+                    val isSubmitted = bundle.getBoolean("isSubmitted")
 
-            binding.commentEditText.text = null
-            binding.gradingBar.rating = 0F
+                    if (isSubmitted) {
+                        handleSubmit(args.personNumber, binding, memberDetailsViewModel)
+                    }
+                }
+            } else {
+                handleSubmit(args.personNumber, binding, memberDetailsViewModel)
+            }
         }
 
         memberDetailsViewModel.memberDetails.observe(viewLifecycleOwner, {})
@@ -80,6 +86,19 @@ class MemberDetailsFragment : Fragment() {
     }
 }
 
-fun handleBtnSubmit(binding: FragmentMemberDetailsBinding) {
+fun handleSubmit(
+    personNumber: Int,
+    binding: FragmentMemberDetailsBinding,
+    memberDetailsViewModel: MemberDetailsViewModel
+) {
+    memberDetailsViewModel.addRatingComment(
+        personNumber,
+        binding.gradingBar.rating,
+        binding.commentEditText.text.toString()
+    )
 
+    Toast.makeText(MyApp.appContext, "Rated Successfully", Toast.LENGTH_SHORT).show()
+
+    binding.commentEditText.text = null
+    binding.gradingBar.rating = 0F
 }

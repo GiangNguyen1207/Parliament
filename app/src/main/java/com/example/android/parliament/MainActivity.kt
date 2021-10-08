@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         delayedInit()
-        //manageFetchingDataStatus(this, binding)
     }
 }
 
@@ -61,30 +60,3 @@ private fun setupRecurringWork() {
         repeatingRequest
     )
 }
-
-/*fun manageFetchingDataStatus(lifecycleOwner: LifecycleOwner, binding: ActivityMainBinding) {
-    WorkManager.getInstance()
-        .getWorkInfosByTagLiveData("dataFetchin")
-        .observe(lifecycleOwner, { workInfo ->
-            for (info in workInfo) {
-                Log.i("info state", info.state.toString())
-
-                when (info.state) {
-                    WorkInfo.State.SUCCEEDED -> {
-                        binding.statusImage.visibility = View.GONE
-                    }
-                    WorkInfo.State.FAILED -> {
-                        binding.statusImage.visibility = View.VISIBLE
-                        binding.statusImage.setImageResource(R.drawable.error_img)
-                    }
-                    WorkInfo.State.RUNNING -> {
-                        binding.statusImage.visibility = View.VISIBLE
-                        binding.statusImage.setImageResource(R.drawable.loading_img)
-                    }
-                    else -> {
-                        binding.statusImage.visibility = View.GONE
-                    }
-                }
-            }
-        })
-}*/

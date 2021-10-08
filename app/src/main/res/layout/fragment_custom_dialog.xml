@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/small"
+        android:paddingBottom="@dimen/small"
+        tools:context=".screens.memberDetails.CustomDialogFragment">
+
+        <TextView
+            android:id="@+id/warning"
+            android:paddingLeft="@dimen/medium"
+            android:paddingRight="@dimen/medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_warning"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small"
+            android:backgroundTint="@color/rating_bar_background"
+            android:text="@string/dialog_btn_back"
+            app:layout_constraintEnd_toStartOf="@+id/btn_positive"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/warning" />
+
+        <Button
+            android:id="@+id/btn_positive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small"
+            android:text="@string/dialog_btn_submit"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_negative"
+            app:layout_constraintTop_toBottomOf="@+id/warning" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

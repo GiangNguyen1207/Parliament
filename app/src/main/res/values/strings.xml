@@ -33,4 +33,7 @@
     <string name="see_all_comments">See all comments</string>
     <string name="all_comments">All Comments</string>
     <string name="party_image">party_image</string>
+    <string name="dialog_warning">MP will get 0 star because you have not rated yet. Do you want to continue?</string>
+    <string name="dialog_btn_submit">Submit</string>
+    <string name="dialog_btn_back">Back</string>
 </resources>

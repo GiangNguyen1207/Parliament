@@ -36,12 +36,12 @@
                 android:layout_width="160dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/small"
+                android:layout_marginLeft="@dimen/small"
                 android:contentDescription="@string/member_image"
-                app:memberImage="@{memberDetailsViewModel.memberDetails}"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name"
+                app:memberImage="@{memberDetailsViewModel.memberDetails}"
                 tools:src="@drawable/ic_launcher_background" />
 
             <TextView
