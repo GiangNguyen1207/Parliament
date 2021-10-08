@@ -9,8 +9,10 @@ import com.example.android.parliament.data.ParliamentMember
 
 class MemberListViewModel(partyName: String) : ViewModel() {
     private val repository: AppRepository = AppRepository(AppDatabase.getDatabase().appDao())
+
     private var _memberList: LiveData<List<ParliamentMember>> =
         repository.getMemberList(partyName)
+
     private val _navigation = MutableLiveData<Int>()
 
     val memberList: LiveData<List<ParliamentMember>>
