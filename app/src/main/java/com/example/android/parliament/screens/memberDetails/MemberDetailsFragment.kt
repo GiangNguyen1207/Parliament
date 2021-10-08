@@ -10,11 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.android.parliament.R
 import com.example.android.parliament.databinding.FragmentMemberDetailsBinding
-import java.util.*
 
 class MemberDetailsFragment : Fragment() {
     private lateinit var memberDetailsVmFactory: MemberDetailsVmFactory
@@ -37,34 +34,26 @@ class MemberDetailsFragment : Fragment() {
             .get(MemberDetailsViewModel::class.java)
 
         binding.lifecycleOwner = this
-        binding.btnSubmit.setOnClickListener {
-            memberDetailsViewModel.onButtonClick()
-            binding.commentEditText.text = null
-        }
-        binding.seeAllComments.setOnClickListener { memberDetailsViewModel.navigateToAllComments() }
         binding.memberDetailsViewModel = memberDetailsViewModel
+        binding.seeAllComments.setOnClickListener { memberDetailsViewModel.navigateToAllComments() }
 
+        binding.btnSubmit.setOnClickListener {
+            memberDetailsViewModel.addRatingComment(
+                args.personNumber,
+                binding.gradingBar.rating,
+                binding.commentEditText.text.toString()
+            )
+
+            Toast.makeText(context, "Rated Successfully", Toast.LENGTH_SHORT).show()
+
+            binding.commentEditText.text = null
+            binding.gradingBar.rating = 0F
+        }
 
         memberDetailsViewModel.memberDetails.observe(viewLifecycleOwner, {})
-
-        memberDetailsViewModel.isClicked.observe(viewLifecycleOwner, { click ->
-            if (click) {
-                memberDetailsViewModel.addRatingComment(
-                    args.personNumber,
-                    binding.gradingBar.rating,
-                    binding.commentEditText.text.toString()
-                )
-                Toast.makeText(context, "Graded Successfully", Toast.LENGTH_SHORT).show()
-                memberDetailsViewModel.doneClick()
-            }
-        })
-
-        memberDetailsViewModel.rates.observe(viewLifecycleOwner, {
-            memberDetailsViewModel.calculateAverageRate(it)
-        })
-
         memberDetailsViewModel.averageRate.observe(viewLifecycleOwner, { rate ->
-            binding.averageRate.text = getString(R.string.average_rate, rate)
+            binding.averageTitle.text =
+                if (rate != null) getString(R.string.rating) else getString(R.string.not_rated_yet)
         })
 
         memberDetailsViewModel.latestComment.observe(viewLifecycleOwner, { comment ->
@@ -89,4 +78,8 @@ class MemberDetailsFragment : Fragment() {
 
         return binding.root
     }
+}
+
+fun handleBtnSubmit(binding: FragmentMemberDetailsBinding) {
+
 }

@@ -1,10 +1,14 @@
 package com.example.android.parliament.screens.memberDetails
 
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.android.parliament.MyApp
 import com.example.android.parliament.R
 import com.example.android.parliament.data.ParliamentMember
+import org.w3c.dom.Text
 import java.util.*
 
 @BindingAdapter("memberName")
@@ -37,13 +41,22 @@ fun TextView.setMemberConstituency(member: ParliamentMember?) {
     }
 }
 
-/*@BindingAdapter("memberImage")
-fun ImageView.setMemberImage(view: ImageView, member: ParliamentMember) {
-    Glide
-        .with(this)
-        .load("https://avoindata.eduskunta.fi/${member.picture}")
-        .circleCrop()
-        .placeholder(R.drawable.loading_animation)
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .into(view)
-}*/
+@BindingAdapter("memberImage")
+fun ImageView.setMemberImage(member: ParliamentMember?) {
+    member?.let {
+        Glide
+            .with(this)
+            .load("https://avoindata.eduskunta.fi/${member.picture}")
+            .circleCrop()
+            .placeholder(R.drawable.loading_animation)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(this)
+    }
+}
+
+@BindingAdapter("averageRate")
+fun TextView.setAverageRate(rate: Double?) {
+    rate?.let {
+        text = MyApp.appContext.getString(R.string.average_rate, rate)
+    }
+}

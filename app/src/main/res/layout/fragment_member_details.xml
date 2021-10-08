@@ -5,9 +5,6 @@
 
     <data>
         <variable
-            name="member"
-            type="com.example.android.parliament.data.ParliamentMember" />
-        <variable
             name="memberDetailsViewModel"
             type="com.example.android.parliament.screens.memberDetails.MemberDetailsViewModel" />
     </data>
@@ -41,7 +38,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/small"
                 android:contentDescription="@string/member_image"
-
+                app:memberImage="@{memberDetailsViewModel.memberDetails}"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name"
@@ -91,6 +88,8 @@
             <ScrollView
                 android:id="@+id/comment_sv"
                 android:layout_width="0dp"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintHeight_max="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/small"
                 android:visibility="gone"
@@ -102,6 +101,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxHeight="100dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -114,6 +114,7 @@
                         android:id="@+id/latest_comment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/small"
                         android:layout_weight="1" />
 
                 </LinearLayout>
@@ -141,9 +142,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small"
                 android:layout_marginTop="@dimen/small"
-                android:text="@string/rating"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:text="@string/rating"
                 app:layout_constraintBottom_toTopOf="@+id/grading_bar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/see_all_comments" />
@@ -153,7 +154,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small"
-                android:text="@string/average_rate"
+                app:averageRate="@{memberDetailsViewModel.averageRate}"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/average_title"

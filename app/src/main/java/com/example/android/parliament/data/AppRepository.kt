@@ -23,7 +23,7 @@ class AppRepository(private val appDao: AppDao) {
 
     suspend fun insertComment(comment: Comment) = appDao.insertComment(comment)
 
-    fun getMemberRate(personNumber: Int): LiveData<List<Double>> = appDao.getMemberRate(personNumber)
+    fun getAverageRate(personNumber: Int): LiveData<Double> = appDao.getAverageRate(personNumber)
 
     fun getMemberComments(personNumber: Int): LiveData<List<Comment>> = appDao.getMemberComments(personNumber)
 
