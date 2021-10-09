@@ -6,8 +6,12 @@ import com.example.android.parliament.data.AppDatabase
 import com.example.android.parliament.data.AppRepository
 import com.example.android.parliament.data.Comment
 
+//Giang Nguyen - 2.10.2021
+
 class MemberCommentsViewModel: ViewModel() {
     private val repository: AppRepository
+
+    //All comments of the user for a MP taken from DB
     private lateinit var _allComments: LiveData<List<Comment>>
 
     val allComments: LiveData<List<Comment>>

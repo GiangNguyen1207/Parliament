@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.android.parliament.R
 import com.example.android.parliament.databinding.FragmentPartyListBinding
 
+//Giang Nguyen - 25.09.2021
+
 class PartyListFragment : Fragment() {
     private lateinit var partyListViewModel: PartyListViewModel
 

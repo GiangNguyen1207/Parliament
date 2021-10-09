@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//Giang Nguyen - 25.09.2021
+
 @Entity(tableName = "parliament_member_table")
 data class ParliamentMember (
     @PrimaryKey

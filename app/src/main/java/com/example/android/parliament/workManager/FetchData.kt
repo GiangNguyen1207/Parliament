@@ -10,6 +10,8 @@ import com.example.android.parliament.data.AppRepository
 import com.example.android.parliament.data.ParliamentMember
 import retrofit2.HttpException
 
+//Giang Nguyen - 5.10.2021
+
 class FetchDataWorker(context: Context, params: WorkerParameters) : CoroutineWorker(
     MyApp.appContext,
     params
@@ -20,8 +22,7 @@ class FetchDataWorker(context: Context, params: WorkerParameters) : CoroutineWor
     }
 
     override suspend fun doWork(): Result {
-        val appDao = AppDatabase.getDatabase().appDao()
-        val repository = AppRepository(appDao)
+        val repository = AppRepository(AppDatabase.getDatabase().appDao())
 
         /*fetch parliament members from the Internet, then change some properties
         and insert directly to the database */

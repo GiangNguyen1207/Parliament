@@ -9,6 +9,8 @@ import com.example.android.parliament.R
 import com.example.android.parliament.data.Party
 import com.example.android.parliament.databinding.PartyRowBinding
 
+//Giang Nguyen - 25.09.2021
+
 class PartyListAdapter(private val clickListener: PartyListener) :
     ListAdapter<Party, PartyListAdapter.ViewHolder>(PartyListDiffCallBack()) {
 
@@ -22,6 +24,7 @@ class PartyListAdapter(private val clickListener: PartyListener) :
             binding.executePendingBindings()
         }
 
+        //inflate layout for each row
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -40,7 +43,7 @@ class PartyListAdapter(private val clickListener: PartyListener) :
     }
 }
 
-//a callback class to observe the difference between two adapters.
+//a callback class to observe the difference between the list of two adapters.
 class PartyListDiffCallBack: DiffUtil.ItemCallback<Party>() {
     override fun areItemsTheSame(oldItem: Party, newItem: Party): Boolean {
         return oldItem.party == newItem.party
@@ -52,7 +55,7 @@ class PartyListDiffCallBack: DiffUtil.ItemCallback<Party>() {
 }
 
 /*a class for action click listener. Its parameter is the function, which receives a party name
-as a parameter. The only one method onClick is to call that function in parameter. */
+as a parameter. The only one method onClick is to call the function in parameter. */
 class PartyListener(val clickListener: (party: String) -> Unit) {
     fun onClick(party: String) = clickListener(party)
 }

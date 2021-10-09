@@ -4,7 +4,9 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.example.android.parliament.R
 
+//Giang Nguyen - 8.10.2021
 
+//Setting Party Image
 @BindingAdapter("partyImage")
 fun ImageView.setPartyImage(party: String) {
     setImageResource(

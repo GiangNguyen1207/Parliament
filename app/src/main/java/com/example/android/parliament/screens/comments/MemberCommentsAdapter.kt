@@ -8,16 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.parliament.data.Comment
 import com.example.android.parliament.databinding.CommentRowBinding
 
+//Giang Nguyen - 2.10.2021
+
 class AllCommentsAdapter :
     ListAdapter<Comment, AllCommentsAdapter.ViewHolder>(CommentsListDiffCallBack()) {
 
     class ViewHolder private constructor(private val binding: CommentRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        //bind the comment to enable using data variable in file xml.
         fun bind(comment: Comment) {
             binding.comment = comment
         }
 
+        //inflate the layout for each comment row
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -40,6 +44,7 @@ class AllCommentsAdapter :
     }
 }
 
+//a callback class to observe the difference between the list of two adapters.
 class CommentsListDiffCallBack : DiffUtil.ItemCallback<Comment>() {
     override fun areItemsTheSame(oldItem: Comment, newItem: Comment): Boolean {
         return oldItem.id == newItem.id

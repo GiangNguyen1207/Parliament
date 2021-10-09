@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//Giang Nguyen - 1.10.2021
+
 @Entity(tableName = "member_comment_table")
 data class Comment(
     @PrimaryKey(autoGenerate = true)

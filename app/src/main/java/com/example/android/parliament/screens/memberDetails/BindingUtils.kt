@@ -11,6 +11,9 @@ import com.example.android.parliament.data.ParliamentMember
 import org.w3c.dom.Text
 import java.util.*
 
+//Giang Nguyen - 8.10.2021
+
+//Binding Name
 @BindingAdapter("memberName")
 fun TextView.setMemberName(member: ParliamentMember?) {
     member?.let {
@@ -18,6 +21,7 @@ fun TextView.setMemberName(member: ParliamentMember?) {
     }
 }
 
+//Binding Title - Minister or Member of Parliament
 @BindingAdapter("memberTitle")
 fun TextView.setMemberTitle(member: ParliamentMember?) {
     member?.let {
@@ -26,6 +30,7 @@ fun TextView.setMemberTitle(member: ParliamentMember?) {
     }
 }
 
+//Binding Age
 @BindingAdapter("memberAge")
 fun TextView.setMemberAge(member: ParliamentMember?) {
     val currentYear = Calendar.getInstance().get(Calendar.YEAR)
@@ -34,6 +39,7 @@ fun TextView.setMemberAge(member: ParliamentMember?) {
     }
 }
 
+//Binding Constituency
 @BindingAdapter("memberConstituency")
 fun TextView.setMemberConstituency(member: ParliamentMember?) {
     member?.let {
@@ -41,6 +47,7 @@ fun TextView.setMemberConstituency(member: ParliamentMember?) {
     }
 }
 
+//Binding Image
 @BindingAdapter("memberImage")
 fun ImageView.setMemberImage(member: ParliamentMember?) {
     member?.let {
@@ -54,6 +61,7 @@ fun ImageView.setMemberImage(member: ParliamentMember?) {
     }
 }
 
+//Binding Average Rate for a MP
 @BindingAdapter("averageRate")
 fun TextView.setAverageRate(rate: Double?) {
     rate?.let {

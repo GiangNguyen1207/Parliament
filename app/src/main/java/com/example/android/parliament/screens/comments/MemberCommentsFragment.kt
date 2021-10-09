@@ -13,6 +13,8 @@ import com.example.android.parliament.R
 import com.example.android.parliament.databinding.FragmentAllCommentsBinding
 import com.example.android.parliament.screens.memberDetails.MemberDetailsFragmentArgs
 
+//Giang Nguyen - 2.10.2021
+
 class MemberCommentsFragment : Fragment() {
     private val args: MemberDetailsFragmentArgs by navArgs()
 
@@ -35,6 +37,7 @@ class MemberCommentsFragment : Fragment() {
 
         memberCommentsViewModel.getAllComments(args.personNumber)
 
+        //observe and show the latest comment list
         memberCommentsViewModel.allComments.observe(viewLifecycleOwner, {
             allCommentsAdapter.submitList(it)
         })

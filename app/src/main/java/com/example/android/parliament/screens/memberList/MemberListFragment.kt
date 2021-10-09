@@ -12,6 +12,8 @@ import androidx.navigation.fragment.navArgs
 import com.example.android.parliament.R
 import com.example.android.parliament.databinding.FragmentMemberListBinding
 
+//Giang Nguyen - 25.09.2021
+
 class MemberListFragment : Fragment() {
     private lateinit var memberListViewModel: MemberListViewModel
     private lateinit var memberListVmFactory: MemberListVmFactory
@@ -38,10 +40,13 @@ class MemberListFragment : Fragment() {
         memberListViewModel =
             ViewModelProvider(this, memberListVmFactory).get(MemberListViewModel::class.java)
 
+        //observe the member list and update it with the adapter when there is a niew list
         memberListViewModel.memberList.observe(viewLifecycleOwner, {
             memberListAdapter.submitList(it)
         })
 
+        /* observe the navigation value. If it changes and not null, move to Member Details Fragment.
+        Then, change the value to null again to avoid infinite loop. */
         memberListViewModel.navigation.observe(viewLifecycleOwner, { personNumber ->
             if (personNumber != null) {
                 this.findNavController().navigate(

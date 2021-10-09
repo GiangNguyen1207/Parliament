@@ -7,6 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
+//Giang Nguyen - 25.09.2021
+
 private const val BASE_URL = "https://users.metropolia.fi/~peterh/"
 
 private val moshi = Moshi.Builder()
