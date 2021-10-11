@@ -54,7 +54,6 @@ fun ImageView.setMemberImage(member: ParliamentMember?) {
         Glide
             .with(this)
             .load("https://avoindata.eduskunta.fi/${member.picture}")
-            .circleCrop()
             .placeholder(R.drawable.loading_animation)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(this)

@@ -5,9 +5,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.android.parliament.MyApp
 import com.example.android.parliament.R
-import com.example.android.parliament.data.AppDatabase
-import com.example.android.parliament.data.AppRepository
-import com.example.android.parliament.data.ParliamentMember
+import com.example.android.parliament.data.*
 import retrofit2.HttpException
 
 //Giang Nguyen - 5.10.2021
