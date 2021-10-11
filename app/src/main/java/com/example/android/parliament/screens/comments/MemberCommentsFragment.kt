@@ -1,7 +1,6 @@
 package com.example.android.parliament.screens.comments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +15,7 @@ import com.example.android.parliament.screens.memberDetails.MemberDetailsFragmen
 //Giang Nguyen - 2.10.2021
 
 class MemberCommentsFragment : Fragment() {
+    private lateinit var memberCommentsVmFactory: MemberCommentsVmFactory
     private val args: MemberDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -27,15 +27,17 @@ class MemberCommentsFragment : Fragment() {
             R.layout.fragment_all_comments, container, false
         )
 
+        memberCommentsVmFactory = MemberCommentsVmFactory(args.personNumber)
         val memberCommentsViewModel: MemberCommentsViewModel =
-            ViewModelProvider(this).get(MemberCommentsViewModel::class.java)
+            ViewModelProvider(
+                this,
+                memberCommentsVmFactory
+            ).get(MemberCommentsViewModel::class.java)
 
         val allCommentsAdapter = AllCommentsAdapter()
 
         binding.lifecycleOwner = this
         binding.commentRv.adapter = allCommentsAdapter
-
-        memberCommentsViewModel.getAllComments(args.personNumber)
 
         //observe and show the latest comment list
         memberCommentsViewModel.allComments.observe(viewLifecycleOwner, {

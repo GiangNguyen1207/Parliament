@@ -36,7 +36,7 @@ private fun delayedInit() {
 there is no data in db */
 private fun fetchDataAtFirst() {
     WorkManager.getInstance()
-        .enqueue(OneTimeWorkRequestBuilder<FetchDataWorker>().addTag("dataFetchin").build())
+        .enqueue(OneTimeWorkRequestBuilder<FetchDataWorker>().build())
 }
 
 /*function to ask Work Manager to fetch Data 1 time/day when there is Wifi or
