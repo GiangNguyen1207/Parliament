@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.parliament.R
 import com.example.android.parliament.data.Party
 import com.example.android.parliament.databinding.PartyRowBinding
 

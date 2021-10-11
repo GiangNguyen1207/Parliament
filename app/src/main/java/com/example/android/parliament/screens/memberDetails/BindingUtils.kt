@@ -8,7 +8,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.android.parliament.MyApp
 import com.example.android.parliament.R
 import com.example.android.parliament.data.ParliamentMember
-import org.w3c.dom.Text
 import java.util.*
 
 //Giang Nguyen - 8.10.2021

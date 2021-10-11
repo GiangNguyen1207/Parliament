@@ -1,7 +1,6 @@
 package com.example.android.parliament.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Query
 import com.example.android.parliament.network.MembersApi
 
 //Giang Nguyen - 25.09.2021
